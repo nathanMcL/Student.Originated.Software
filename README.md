@@ -15,7 +15,6 @@ The script is used to monitor and log system performance metrics in csv format.<
 The script provides insights into:<br>
 
 - Computer Temperature
-- Wi-Fi Strength
 - Wi-Fi Quality
 - Computer Usage
 - Memory Usage
