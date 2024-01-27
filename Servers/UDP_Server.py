@@ -2,12 +2,13 @@ import socket
 import sys
 
 # Server settings
-serverPort = 7777
+serverName = 'localhost' 
+serverPort = 7777  # Change as needed
 serverSocket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
 # Binding the server socket to the specified port
 try:
-    serverSocket.bind(('', serverPort))
+    serverSocket.bind((serverName, serverPort))
     print(f"Server is listening on port {serverPort}")
 except OSError as e:
     print(f"Error: Unable to bind to port {serverPort}: {e}")
@@ -17,8 +18,14 @@ except OSError as e:
 try:
     while True:
         message, clientAddress = serverSocket.recvfrom(2048)
-        modifiedMessage = message.decode().upper()
+
+        # Log the received message
+        print(f"Received message: {message.decode()}")
+
+        # Process the message and send it back
+        modifiedMessage = message.decode().upper()  # Returns client message capitalized
         serverSocket.sendto(modifiedMessage.encode(), clientAddress)
+
 except KeyboardInterrupt:
     print("\nServer is shutting down.")
 finally:
