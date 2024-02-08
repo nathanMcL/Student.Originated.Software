@@ -6,9 +6,9 @@ This repository is a collection of utility tools designed to collect and manipul
 
 ## Software Programs
 
-### System Performance Logging Program
+### Raspberry Health a System Performance Logging Program
 
-`SystemLog.sh` to `MenuMode.py`
+`SystemLog.sh` to `MenuMode.py` to RaspberryHealth
 
 This program collects data using a bash script tailored for Debian/Linux systems.<br>
 The script is used to monitor and log system performance metrics in csv format.<br>
