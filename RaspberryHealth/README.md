@@ -57,7 +57,8 @@ What's next for the project next quarter (as an app engineered for the web):
 
 Moving this project ahead for next quarter (8 Jan 2024). I am looking forward to improving the program's functions. I am working on incorporating another CSV file of data from a Raspberry pi Zero. I am excited to learn how I could better describe the data visually.
 
-![Screenshot (420)](https://github.com/nathanMcL/Student.Originated.Software/assets/129904249/acbee6c3-c141-4a32-8bca-285fd542e56a)
+![Screenshot (427)](https://github.com/nathanMcL/Student.Originated.Software/assets/129904249/0ad34771-2dea-4351-881b-777cdfdb418e)
+
 
 
 ---
@@ -65,4 +66,5 @@ Raspberry Health WireFrame
 ---
 
 
-![RaspberryHealthImgView](https://github.com/TheEvergreenStateCollege/upper-division-cs/assets/129904249/b560bf8a-3e4e-4cd0-b7c9-bdcdb473f1a2)
+![RaspberryHealthwire_WireFrameLucid](https://github.com/nathanMcL/Student.Originated.Software/assets/129904249/7f2c8a86-a828-4e9a-889a-e0fe7b6e185d)
+
