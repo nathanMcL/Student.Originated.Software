@@ -19,9 +19,9 @@ Work in progress :)
 ---
 How to run our tests and what they mean:
 ---
-Utilzing and implementing SystemLog.sh bash script found in the SystemLogResources folder to collect the data(you may need to change the bash script associated network).
-once the csv has been generated you will have a collection of data with headers:
-Operating System Name, Date and Time, CPU Temperature, Wi-Fi strength measured by 
+Utilzing and implementing SystemLog.sh bash script found in the SystemLogResources folder to collect the data(you may need to change the bash script associated network).<br>
+Once the csv has been generated you will have a collection of data with headers:<br>
+Operating System Name, Date and Time, CPU Temperature, Wi-Fi strength measured by <br>
 -dBm, Memory Usage, Disk Usage, Network Traffic Rx/Tx.
 
 
@@ -30,16 +30,16 @@ How we built it (your tech stack):
 ---
 Raspberry Pi with Debian GNU/Linux 11 Operating System.
 Pycharm & VS Code with Python 3.12.
-Windows Surface Pro
+Windows Surface Book
 
 
 ---
 Challenges we ran into:
 ---
-Trying to get the code files to mesh with MenuMain.
-Trying to schedule the crontab -e file with command to execute the program at set times.
-Trying to execute the program using Pycharm and in a separate IDE VS Code environment to simulate the Gitpod VS code environment prior to upload. 
-Trying to debug the program in gitpod. Trying to create a comprehendible readme file.  
+Trying to get the code files to mesh with MenuMain.<br>
+Trying to schedule the crontab -e file with command to execute the program at set times.<br>
+Trying to execute the program using Pycharm and in a separate IDE VS Code environment to simulate the Gitpod VS code environment prior to upload. <br>
+Trying to debug the program in gitpod. Trying to create a comprehendible readme file.  <br>
  
 ---
 Accomplishments that we're proud of:
