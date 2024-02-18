@@ -8,10 +8,19 @@
 from socket import *
 import sys
 import datetime
+import re
 
 serverName = '127.0.0.1'
 serverPort = 5000
 serverSocket = socket(AF_INET, SOCK_STREAM)
+
+
+def sanitized_message(message):
+    # Unwanted characters or sequences
+    # This removes <,>, and script tags.
+    pattern = re.compile(r'<.*?>|script', re.IGNORECASE)
+    sanitized_message = re.sub(pattern, '', message)
+    return sanitized_message
 
 
 def log_message(action, client_info, msg=""):
@@ -42,15 +51,18 @@ try:
                 if not sentence or sentence.lower() == 'quit':
                     connectionOpen = False
                     break
-                
+
+                # Sanitized the received sentence
+                sanitized_sentence = sanitized_message(sentence)
+
                 # Validate input: only allow alphanumeric characters and basic punctuation
                 if not all(char.isalnum() or char.isspace() or char in ",.!?'" for char in sentence):
-                    log_message("Invalid message from", client_info, sentence)
+                    log_message("Invalid message from", client_info, sanitized_sentence)
                     continue
 
-                log_message("Message received from", client_info, sentence)
+                log_message("Message received from", client_info, sanitized_sentence)
 
-                capitalizedSentence = sentence.upper()
+                capitalizedSentence = sanitized_sentence.upper()
                 connectionSocket.send(capitalizedSentence.encode())
             except IOError as e:
                 log_message("IOError, connection lost with", client_info)
