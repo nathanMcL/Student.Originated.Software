@@ -49,7 +49,8 @@ WSL Trace Route Log
 ---
 
 
-![traceroute](https://github.com/nathanMcL/Student.Originated.Software/assets/129904249/53db4d54-4b09-406a-9f5e-7e91a2cb0528)
+![traceroute](https://github.com/nathanMcL/Student.Originated.Software/assets/129904249/2d1c00c7-9589-4bc0-b832-0e4217ec6484)
+
 
 ## WSL_TraceRouteLog.sh
 
