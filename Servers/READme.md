@@ -57,15 +57,15 @@ Main Menu or Landing page
 ![mainmenu](https://github.com/TheEvergreenStateCollege/upper-division-cs/assets/129904249/3c9fdbda-c4f7-450c-9893-69c2e09aaa31)
 
 
--The symbols on the left of the image from the top are:<br>
--House = the Home button<br>
--Smiley Face = The About page<br>
--Paper with lines = Link to GitHub profile<br>
--Main Icon = Contact me page with link to my LinkdenIn profile<br>
+- The symbols on the left of the image from the top are:<br>
+- House = the Home button<br>
+- Smiley Face = The About page<br>
+- Paper with lines = Link to GitHub profile<br>
+- Main Icon = Contact me page with link to my LinkdenIn profile<br>
 
--The images on the right of the screen:<br>
--The little raspberry-humanoid image is a link to my RaspberryHealth project.<br>
--The calculator image is a link to a basic calculator...
+- The images on the right of the screen:<br>
+- The little raspberry-humanoid image is a link to my RaspberryHealth project.<br>
+- The calculator image is a link to a basic calculator...
 
 ---
 About page
