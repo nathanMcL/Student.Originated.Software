@@ -50,6 +50,7 @@ Login page
 I have the main menu accessible on the index page so that I don't have to log in each time.<br> 
 I have logged in once!!! It was a challange to get the profile creation and then the user login features to function correctly...<br> 
 I needed a break from stress. lol :P
+
 ---
 Main Menu or Landing page
 ---
@@ -57,13 +58,13 @@ Main Menu or Landing page
 ![mainmenu](https://github.com/TheEvergreenStateCollege/upper-division-cs/assets/129904249/3c9fdbda-c4f7-450c-9893-69c2e09aaa31)
 
 
-- The symbols on the left of the image from the top are:<br>
+## The symbols on the left of the image from the top are:<br>
 - House = the Home button<br>
 - Smiley Face = The About page<br>
 - Paper with lines = Link to GitHub profile<br>
 - Main Icon = Contact me page with link to my LinkdenIn profile<br>
 
-- The images on the right of the screen:<br>
+## The images on the right of the screen:<br>
 - The little raspberry-humanoid image is a link to my RaspberryHealth project.<br>
 - The calculator image is a link to a basic calculator...
 
@@ -82,5 +83,5 @@ Contact me page
 
 
 
-Currently (2.24.24) I care more about the function of everthing. I want to keep it simple so that the larger the project grows you can still trace the file paths. The color scheme feels too bland,<br> 
+Currently (2.24.24) I care more about the function of everthing. I want to keep it simple so that the larger the project grows, I can still trace the file paths. The color scheme feels too bland,<br> 
 and I'm not sure I like the verticle footer, maybe make it thinner... or not have a verticle footer... 
