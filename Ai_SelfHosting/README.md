@@ -12,7 +12,7 @@ The process is autonomous to an extent but is heavily guided by the initial prog
 When we think about AI, particularly in the context of generating responses to user queries, we're often discussing models trained on large datasets that learn to predict the most likely response based on the input they receive. These AI models, like GPT (Generative Pretrained Transformer), use statistical probabilities to generate responses that are coherent and contextually relevant to the queries they receive.
 
 
-
+todo: add training data
 
 ## How to run our demo
 
