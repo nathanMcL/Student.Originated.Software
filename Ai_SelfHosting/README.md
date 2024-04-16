@@ -19,6 +19,23 @@ I had to exit out, get back into gitpod and redo my changes, then commit and pus
 
 Next time commit and push changes before running.<br>
 
+You'll need to download the training images and labels, and test images and labels, from Yann LeCun's website
+
+https://yann.lecun.com/exdb/mnist/ by using the following command:
+
+```
+curl http://yann.lecun.com/exdb/mnist/train-images-idx3-ubyte.gz -o train-images-idx3-ubyte.gz &&
+curl http://yann.lecun.com/exdb/mnist/train-labels-idx1-ubyte.gz -o train-labels-idx1-ubyte.gz &&
+curl http://yann.lecun.com/exdb/mnist/t10k-images-idx3-ubyte.gz -o t10k-images-idx3-ubyte.gz &&
+curl http://yann.lecun.com/exdb/mnist/t10k-labels-idx1-ubyte.gz -o t10k-labels-idx1-ubyte.gz
+```
+After the .gitignore file is created, run the .gz unzip command:
+```
+gunzip *.gz
+```
+
+
+
 
 ## todo:
 
@@ -30,8 +47,10 @@ Next time commit and push changes before running.<br>
 
 
 ## How to run our demo
-
-
+Example of how you can run the program once you have navigated to the directory.
+```
+python3 prototype-00
+```
 
 
 
