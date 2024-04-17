@@ -153,9 +153,9 @@ from network import Network
 nn = Network([784, 100, 10])
 nn.SGD(
     training_data=training_data,
-    epochs=30,
+    epochs=50,
     mini_batch_size=10,
-    eta=0.001,
+    eta=0.3,
     test_data=test_data
 )
 
