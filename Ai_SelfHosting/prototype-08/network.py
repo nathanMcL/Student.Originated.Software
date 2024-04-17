@@ -6,9 +6,8 @@ class Network(object):
     def __init__(self, sizes):
         self.num_layers = len(sizes)
         self.sizes = sizes
-        self.biases = [np.random.randn(y, 1) for y in sizes[i]]
-        self.weights = [np.random.randn(y, x)
-            for x, y in zip(sizes[:-1], sizes[1:])]
+        self.biases = [np.random.randn(y, 1) for y in sizes[1:]]  
+        self.weights = [np.random.randn(y, x) for x, y in zip(sizes[:-1], sizes[1:])]
     
     def sigmoid(z):
         return 1.0/(1.0+np.exp(-z))
@@ -27,10 +26,12 @@ class Network(object):
         test_data=None
     ) :
         if test_data:
+            test_data = list(test_data)
             n_test = len(test_data)
-        n = len(training_data)
+        n = len(list(training_data))
 
-        for j in xrange(epochs):
+        for j in range(epochs):
+            training_data = list(training_data)
             random.shuffle(training_data)
             mini_batches = [
                 training_data[k:k+mini_batch_size]
