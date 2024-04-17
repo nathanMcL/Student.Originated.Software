@@ -34,12 +34,18 @@ After the .gitignore file is created, run the .gz unzip command:
 gunzip *.gz
 ```
 
-
+## Installed libraries
+```
+pip3 install Pillow  && pip3 install numpy
+```
 
 
 ## todo:
 
- 
+ load_mnist.py", line 25, in load_all_training_images  <br>
+    f = open("train-images-idx3-ubyte", "rb")   <br>
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ <br>
+FileNotFoundError: [Errno 2] No such file or directory: 'train-images-idx3-ubyte' <br>
 
 
 
