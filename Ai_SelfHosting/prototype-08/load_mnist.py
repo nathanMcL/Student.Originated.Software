@@ -5,7 +5,7 @@ def bytes_to_num(arr):
     result = 0
     for i in arr:
         print(f"result {result} {i}")
-        result *= 255
+        result *= 256
         result += i 
     return result
 

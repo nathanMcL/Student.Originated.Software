@@ -11,6 +11,8 @@ class Network(object):
     
     @staticmethod
     def sigmoid(z):
+        # Clip the value of z to prevent overflow in the exp function
+        z = np.clip(z, -500, 500)  # the values can be adjusted
         return 1.0/(1.0+np.exp(-z))
 
     #@staticmethod
@@ -91,7 +93,7 @@ class Network(object):
         return (nabla_b, nabla_w)
 
     def evaluate(self, test_data):
-        test_results = [(np.argmax(self.feedforward(x)), y)
+        test_results = [(np.argmax(self.feedforward(x)), np.argmax(y))
                             for (x, y) in test_data]
         return sum(int(x == y) for (x, y) in test_results)
 
