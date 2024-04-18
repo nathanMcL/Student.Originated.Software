@@ -13,8 +13,8 @@ class Network(object):
     def sigmoid(z):
         return 1.0/(1.0+np.exp(-z))
 
-    @staticmethod
-    def sigmoid_prime(z):
+    #@staticmethod
+    def sigmoid_prime(self, z):
         """Derivates of the sigmoid function."""
         return self.sigmoid(z) * (1 - self.sigmoid(z))
 
@@ -62,7 +62,7 @@ class Network(object):
     def feedforward(self, a):
         """Return the output of the network if "a" is input."""
         for b, w in zip(self.biases, self.weights):
-            a = sigmoid(np.dot(w, a) + b)
+            a = self.sigmoid(np.dot(w, a) + b)
         return a 
 
     def backprop(self, x, y):
@@ -78,14 +78,13 @@ class Network(object):
             activation = self.sigmoid(z)
             activations.append(activation)
         # backward pass
-        delta = self.cost_derivative(activations[-1], y) * \
-            self.sigmoid_prime(zs[-1])
+        delta = self.cost_derivative(activations[-1], y) * self.sigmoid_prime(zs[-1])
         nabla_b[-1] = delta
         nabla_w[-1] = np.dot(delta, activations[-2].transpose())
 
-        for l in xrange(2, self.num_layers):
+        for l in range(2, self.num_layers):
             z = zs[-l]
-            sp = sigmoid_prime(z)
+            sp = self.sigmoid_prime(z)
             delta = np.dot(self.weights[-l+1].transpose(), delta) * sp
             nabla_b[-l] = delta
             nabla_w[-l] = np.dot(delta, activations[-l-1].transpose())
