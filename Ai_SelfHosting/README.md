@@ -38,14 +38,26 @@ gunzip *.gz
 ```
 pip3 install Pillow  && pip3 install numpy
 ```
+## 04/18/2024
+FYI: I have to install the dependencies each time I log back into gitpod to work on the code.
+
+
 
 
 ## todo:
 
- load_mnist.py", line 25, in load_all_training_images  <br>
-    f = open("train-images-idx3-ubyte", "rb")   <br>
-        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ <br>
-FileNotFoundError: [Errno 2] No such file or directory: 'train-images-idx3-ubyte' <br>
+ Traceback (most recent call last):<br>
+  File "/workspace/Student.Originated.Software/Ai_SelfHosting/prototype-08/load_mnist.py", line<br> 154, in <module> <br>
+    nn.SGD( <br>
+  File "/workspace/Student.Originated.Software/Ai_SelfHosting/prototype-08/network.py", line 41,<br> in SGD <br>
+    self.update_mini_batch(mini_batch, eta) <br>
+  File "/workspace/Student.Originated.Software/Ai_SelfHosting/prototype-08/network.py", line 53,<br> in update_mini_batch <br>
+    delta_nabla_b, delta_nabla_w = self.backprop(x, y) <br>
+                                   ^^^^^^^^^^^^^^^^^^^ <br>
+  File "/workspace/Student.Originated.Software/Ai_SelfHosting/prototype-08/network.py", line 71,<br> in backprop<br>
+    activation = sigmoid(z) <br>
+                 ^^^^^^^ <br>
+NameError: name 'sigmoid' is not defined. Did you mean: 'self.sigmoid'? <br>
 
 
 
