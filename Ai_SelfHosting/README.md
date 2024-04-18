@@ -38,14 +38,29 @@ gunzip *.gz
 ```
 pip3 install Pillow  && pip3 install numpy
 ```
+## 04/18/2024
+FYI: I have to install the dependencies each time I log back into gitpod to work on the code.
+
+
 
 
 ## todo:
 
- load_mnist.py", line 25, in load_all_training_images  <br>
-    f = open("train-images-idx3-ubyte", "rb")   <br>
-        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ <br>
-FileNotFoundError: [Errno 2] No such file or directory: 'train-images-idx3-ubyte' <br>
+ /workspace/Student.Originated.Software/Ai_SelfHosting/prototype-08/network.py:14: RuntimeWarning: overflow encountered in exp <br>
+  return 1.0/(1.0+np.exp(-z)) <br>
+Traceback (most recent call last): <br>
+  File "/workspace/Student.Originated.Software/Ai_SelfHosting/prototype-08/load_mnist.py", line 154, in <module> <br>
+    nn.SGD( <br>
+  File "/workspace/Student.Originated.Software/Ai_SelfHosting/prototype-08/network.py", line 45, in SGD <br>
+    j, self.evaluate(test_data), n_test))  <br>
+       ^^^^^^^^^^^^^^^^^^^^^^^^  <br>
+  File "/workspace/Student.Originated.Software/Ai_SelfHosting/prototype-08/network.py", line 96, in evaluate  <br>
+    return sum(int(x == y) for (x, y) in test_results)  <br>
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^  <br>
+  File "/workspace/Student.Originated.Software/Ai_SelfHosting/prototype-08/network.py", line 96, in <genexpr>  <br>
+    return sum(int(x == y) for (x, y) in test_results)   <br>
+               ^^^^^^^^^^^   <br>
+TypeError: only length-1 arrays can be converted to Python scalars  <br>
 
 
 
