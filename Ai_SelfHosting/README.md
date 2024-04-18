@@ -19,7 +19,7 @@ I had to exit out, get back into gitpod and redo my changes, then commit and pus
 
 Next time commit and push changes before running.<br>
 
-You'll need to download the training images and labels, and test images and labels, from Yann LeCun's website
+You'll need to download the training images, labels, test images and labels, from Yann LeCun's website.
 
 https://yann.lecun.com/exdb/mnist/ by using the following command:
 
