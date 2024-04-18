@@ -9,15 +9,16 @@ class Network(object):
         self.biases = [np.random.randn(y, 1) for y in sizes[1:]]  
         self.weights = [np.random.randn(y, x) for x, y in zip(sizes[:-1], sizes[1:])]
     
+    @staticmethod
     def sigmoid(z):
         return 1.0/(1.0+np.exp(-z))
 
-    def feedforward(self, a):
-        """Return the output of the network if "a" is input."""
-        for b, w in zip(self.biases, self.weights):
-            a = sigmoid(np.dot(w, a) + b)
-        return a 
-    
+    @staticmethod
+    def sigmoid_prime(z):
+        """Derivates of the sigmoid function."""
+        return self.sigmoid(z) * (1 - self.sigmoid(z))
+
+        
     def SGD(self,
         training_data,
         epochs, 
@@ -58,6 +59,12 @@ class Network(object):
         self.biases = [b-(eta/len(mini_batch))*nb
                         for b, nb in zip(self.biases, nabla_b)]
 
+    def feedforward(self, a):
+        """Return the output of the network if "a" is input."""
+        for b, w in zip(self.biases, self.weights):
+            a = sigmoid(np.dot(w, a) + b)
+        return a 
+
     def backprop(self, x, y):
         nabla_b = [np.zeros(b.shape) for b in self.biases]
         nabla_w = [np.zeros(w.shape) for w in self.weights]
@@ -68,7 +75,7 @@ class Network(object):
         for b, w in zip(self.biases, self.weights):
             z = np.dot(w, activation)+b
             zs.append(z)
-            activation = sigmoid(z)
+            activation = self.sigmoid(z)
             activations.append(activation)
         # backward pass
         delta = self.cost_derivative(activations[-1], y) * \
