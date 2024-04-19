@@ -36,7 +36,7 @@ gunzip *.gz
 
 ## Installed libraries
 ```
-pip3 install Pillow  && pip3 install numpy
+pip3 install Pillow  && pip3 install numpy && pip3 install pbjson
 ```
 ## 04/18/2024
 FYI: I have to install the dependencies each time I log back into gitpod to work on the code.
@@ -69,10 +69,8 @@ TypeError: only length-1 arrays can be converted to Python scalars  <br>
 
 ## How to run our demo
 Example of how you can run the program once you have navigated to the directory.
-```
-python3 prototype-00
-```
-
+```python3 prototype-00```
+```python3 train.py```
 
 
 
