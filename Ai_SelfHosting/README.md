@@ -41,28 +41,15 @@ pip3 install Pillow  && pip3 install numpy && pip3 install pbjson
 ## 04/18/2024
 FYI: I have to install the dependencies each time I log back into gitpod to work on the code.
 
-
+## 04/19/2024
+I was able to create the trainer on my local machine. It will run for a while to see what happens. <br>
 
 
 ## todo:
 
- /workspace/Student.Originated.Software/Ai_SelfHosting/prototype-08/network.py:14: RuntimeWarning: overflow encountered in exp <br>
-  return 1.0/(1.0+np.exp(-z)) <br>
-Traceback (most recent call last): <br>
-  File "/workspace/Student.Originated.Software/Ai_SelfHosting/prototype-08/load_mnist.py", line 154, in <module> <br>
-    nn.SGD( <br>
-  File "/workspace/Student.Originated.Software/Ai_SelfHosting/prototype-08/network.py", line 45, in SGD <br>
-    j, self.evaluate(test_data), n_test))  <br>
-       ^^^^^^^^^^^^^^^^^^^^^^^^  <br>
-  File "/workspace/Student.Originated.Software/Ai_SelfHosting/prototype-08/network.py", line 96, in evaluate  <br>
-    return sum(int(x == y) for (x, y) in test_results)  <br>
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^  <br>
-  File "/workspace/Student.Originated.Software/Ai_SelfHosting/prototype-08/network.py", line 96, in <genexpr>  <br>
-    return sum(int(x == y) for (x, y) in test_results)   <br>
-               ^^^^^^^^^^^   <br>
-TypeError: only length-1 arrays can be converted to Python scalars  <br>
+```
 
-
+```
 
 
 
