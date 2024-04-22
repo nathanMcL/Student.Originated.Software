@@ -44,11 +44,26 @@ FYI: I have to install the dependencies each time I log back into gitpod to work
 ## 04/19/2024
 I was able to create the trainer on my local machine. It will run for a while to see what happens. <br>
 
+## 04/22/2024
+I have been able to save the epochs up to 50
+```
+Epoch 40: 1030 / 10000
+Epoch 41: 1015 / 10000
+Epoch 42: 1032 / 10000
+Epoch 43: 1129 / 10000
+Epoch 44: 1063 / 10000
+Epoch 45: 1088 / 10000
+Epoch 46: 1039 / 10000
+Epoch 47: 1044 / 10000
+Epoch 48: 1055 / 10000
+Epoch 49: 1050 / 10000
+```
+It is good that I can reach Epoch 50. However, the percentage or accuracy of the images recognized  1050 / of the 10k training images used per Epoch should increase as it trains.
 
 ## todo:
 
 ```
-
+Figure out how to improve the algorithm to increase its recognition
 ```
 
 
