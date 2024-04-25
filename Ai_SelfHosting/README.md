@@ -93,6 +93,20 @@ Since on average a proportion retain_prob of the inputs are retained, this could
 Implementing the dropout function helps by the training of mulitple neural networks with different architectures. The function does this by  randomly dropping different sets of neurons. This is repersents sampling from an ensemble of neural networks, which improves the gerneralization of the model.<br>
 So... while the program is "training", ```dropout``` is not applied, the neurons are not dropped, and the full capabilities of the trained network are utilized. This helps the network make the most accurate predictions possible with the learned weight and biases.<br> 
 
+## Evaluate Training Accuracy:<br>
+I wanted to create an instance once the program is finished "training", that ```Training Accuracy``` is printed. The Idea is later, create a CSV log report of the training accuracy amoung other collectable data...<br> 
+But for now... ```print```<br>
+### Date & Time <br>
+04/25/24 0935 <br>
+```Training Accuracy: 70.29833333333333%```
+```
+def evaluate_accuracy(self, data):
+        """Evaluate the network's accuracy on the provided data."""
+        results = [(np.argmax(self.feedforward(x)), np.argmax(y)) for (x, y) in data]
+        accuracy = sum(int(x == y) for (x, y) in results) / len(data) * 100  # I want to calculate the  accuracy as a percentage
+        return accuracy
+```
+
 ## todo:
 
 ```
