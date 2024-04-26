@@ -98,7 +98,12 @@ I wanted to create an instance once the program is finished "training", that ```
 But for now... ```print```<br>
 ### Date & Time <br>
 04/25/24 0935 <br>
-```Training Accuracy: 70.29833333333333%```
+```
+   Training Accuracy: 70.29833333333333%
+   Training Accuracy: 85.53%
+```
+
+
 ```
 def evaluate_accuracy(self, data):
         """Evaluate the network's accuracy on the provided data."""
