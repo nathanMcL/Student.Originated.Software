@@ -55,9 +55,6 @@ class Network(object):
                     self.update_mini_batch(mini_batch, eta)
                     #print("Epoch {} complete".format(j))
                     
-            # After training, log the results
-            self.log_training_results(epochs, len(training_data), self.evaluate_accuracy(training_data))
-
             # Save the model after each Epoch
             self.saveToPBJSON(f"model_epoch_{j}.pbjson")
 
@@ -71,6 +68,9 @@ class Network(object):
                     j, self.evaluate(test_data), n_test))
             else:
                 print("Epoch {} complete".format(j))
+        
+        # After training, log the results
+        self.log_training_results(epochs, len(training_data), self.evaluate_accuracy(training_data))
 
 
     def update_mini_batch(self, mini_batch, eta):
@@ -176,8 +176,9 @@ class Network(object):
 
     def log_training_results(self, epochs, images_per_epoch, accuracy):
         filename = 'training_log.csv'
-        with open(filename, mode='w', newline='') as file:
+        with open(filename, mode='a', newline='') as file:
             writer = csv.writer(file)
-            writer.writerow(["Date and Time", "Total Epochs", "Images per Epoch", "Training Accuracy"])
+            if file.tell() == 0:
+                writer.writerow(["Date and Time", "Total Epochs", "Images per Epoch", "Training Accuracy"])
             current_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-            writer.writerow([current_time, epochs, images_per_epoch, accuracy]) 
+            writer.writerow([current_time, epochs, images_per_epoch, accuracy])  
