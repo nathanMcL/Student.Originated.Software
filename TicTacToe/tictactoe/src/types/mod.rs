@@ -1,10 +1,7 @@
 // Submodules go here
 pub mod board;
 
-#[derive(Debug)]
-#[derive(Clone)]
-#[derive(PartialEq, Eq)]
-
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum Player {
     X,
     O,
@@ -20,16 +17,15 @@ impl Player {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Clone, Copy, PartialEq)]
 pub struct Move {
     pub coords: (u8, u8),
 }
 
-pub type Cell<'a> = Option<&'a Player>;
+pub type Cell = Option<Player>;
 
-#[derive(Debug)]
-pub struct Board<'a> {
-    // Row first cooridinate, column second coordinate
-    pub cells: [[ Cell<'a>; 3]; 3],
-    pub next_to_move: &'a Player,
+#[derive(Debug, Clone)]
+pub struct Board {
+    //(X, Y) - (right, down)
+    pub cells: [[Cell; 3]; 3]
 }

@@ -1,86 +1,139 @@
 use std::io;
-use regex_lite::Regex;
-use prototype_0::moves::MoveError;
-use prototype_0::moves::enumerator::list_moves;
-use prototype_0::types::{Board,Player,Move};
-use prototype_0::validators::when_validator;
+use tictactoe::moves::MoveError;
+use tictactoe::moves::ranker::ranker::{find_best_move, find_winning_moves, find_threatening_moves};
+use tictactoe::types::*;
+use tictactoe::validators::win_validator;
 
-fn do_move<'a>(mut board: Board<'a>, next_move: &Move, player: &Player) -> Board<'a> {
-    let (move_error: Option<MoveError>) = board.make_move(new_move: next_move, player);
-    println!("{:?}", board);
-    match move_error {
-        Some(MoveError::OutOfBounds) => {
-            println!("Move out of bounds");
-        }, 
-        Some(MoveError::CellTaken) => {
-            // We are naive move picker
-            // If the cell we weant already has a move
-            // we move onto the next one
-        },
-        Some(MoveError::WrongPlayer) => {
-            println!("Wrong player, skipping turn");
-        },
-        None => {
-
-        },
-
-    }
-    board
-}
+const AI_EXPLAIN: bool = false;
 
 fn main() {
-    let board:Board<'static> = Board::new();
-    let mut board_in_progress: Board = board.clone();
-    let (moves: Vec<Move>, mut _board_ref: &Board<'static>) = list_moves(&board);
+    let mut board = Board::new();
+    let mut move_count = 0;
 
-    let moves_iter: Iter<'static, Move> = moves_iter();
 
-    let re: Regex = Regex::new(pattern: r"\(([0-2]),([0-2])\)").unwrap();
-    
-    println!("{:?}", board);
-
-    // Create a first move
-    // let the first move = move
-    
-    // Main loop
-    // We are currently a naive picker
-    // We have a fixed list of all possible moves, and we iterate through
-    // We let the player choose their first move
-    // Player starts first
-    for next_move: &Move in moves_iter {
-
-        println!("Input your move a tuple: (x,y) where x,y are 0 1 2: ");
-        let mut guess: String = String::new();
-
-        io::stdin() Stdin 
-            .read_line(buf: &mut guess) Result<usize, Error>
-            .expect(msg: "failed to read line");
-
-        let mut board1: Board<'static>;
-
-        for (_, [row_cap: &str, col_cap: &str]) in re.captures_iter(haystack: &guess).map(|c: Captures<'static>| c.extract()) {
-
-            match (row_cap.parse::<u8>(), col_cap.parse::<u8>()) {
-
-                (Ok(_row: u8), Ok(_col: u8)) => {
-
-                    let player_move: Move = Move { cords: ( _row, _col)};
-                    board1 = do_move(board_in_progress, next_move: &player_move, player: &Player::O);
-                    // Our solvers's move
-                    board_in_progress = do_move(board: board1, next_move, player: &Player::X)
-                }
-                _ => {
-                    println!("Sorry, I could not understand your move ({:?},{:?}, Let's try again", row_cap, col_cap);
-
-                }
-
-            };
+    loop {
+        if move_count > 0 {
+            if let Some(win_move) = suggest_winning_move(&board) {
+                println!("Suggested move: ({}, {})", win_move.coords.0, win_move.coords.1);
+            }
         }
 
-        if win_validator(&board_in_progress) {
+        let coords = get_user_input(&board, move_count);
+        let move_error = board.make_move(&Move{coords}, Player::O);
+        match move_error {
+            Some(MoveError::CellTaken) => {
+                println!("That space is already taken");
+                continue
+            },
+            _ => println!("{}", board),
+        }
+        move_count += 1;
 
-            println!(" 🏆 Game Won 🏆 \n by {:?}", board.next_to_move);
+        if win_validator(&board, Player::O) {
+            println!("🎊 You won! 🎊 \n");
+            break;
+        }
+
+        let (ai_move, ai_reason) = find_best_move(&board);
+        if AI_EXPLAIN { println!("[DEBUG] AI REASON FOR MOVE: {}", ai_reason); }
+        board.make_move(&ai_move, Player::X);
+        println!("AI's move:");
+        println!("{}", board);
+
+        if win_validator(&board, Player::X) {
+            println!("😢 You lose! 😢 \n");
             break;
         }
     }
-} fn main 
+}
+
+fn suggest_winning_move(board: &Board) -> Option<Move> {
+    let winning_moves = find_winning_moves(board, Player::O);
+    if !winning_moves.is_empty() {
+        Some(winning_moves[0])
+    } else {
+        None 
+    }
+}
+
+fn get_user_input(board: &Board, move_count: usize) -> (u8, u8) {
+    loop {
+        println!("Input your move (or 'suggest' for help):");
+        let mut line = String::new();
+        io::stdin().read_line(&mut line).expect("failed to read line");
+        line = line.trim().to_lowercase();
+
+        if line == "suggest" {
+            if move_count > 0 {
+                if let Some(suggest_move) = suggest_move_based_on_ai(board) {
+                    println!("Consider moving to: ({}, {})", suggest_move.coords.0, suggest_move.coords.1);
+                    continue;
+                } else {
+                    println!("Umm, try guessing... the board is a mystery!");
+                    continue;
+                }
+            } else {
+                println!("Make at least one move before asking for suggestions.");
+                continue;
+            }
+        }
+
+
+        match line.as_str() {
+            "center" =>        break (1,1),
+            "middle" =>        break (1,1),
+            "dead center" =>   break (1,1),
+            "center center" => break (1,1),
+            "middle middle" => break (1,1),
+            "center middle" => break (1,1),
+            "middle center" => break (1,1),
+
+            "top left" => break (0,0),
+            "left top" => break (0,0),
+
+            "top" =>        break (1,0),
+            "top center" => break (1,0),
+            "top middle" => break (1,0),
+            "center top" => break (1,0),
+            "middle top" => break (1,0),
+
+            "top right" => break (2,0),
+            "right top" => break (2,0),
+
+            "left" =>        break (0,1),
+            "left center" => break (0,1),
+            "center left" => break (0,1),
+            "middle left" => break (0,1),
+            "left middle" => break (0,1),
+
+            "right" =>        break (2,1),
+            "right center" => break (2,1),
+            "center right" => break (2,1),
+            "middle right" => break (2,1),
+            "right middle" => break (2,1),
+
+            "bottom left" => break (0,2),
+            "left bottom" => break (0,2),
+
+            "bottom" =>        break (1,2),
+            "bottom center" => break (1,2),
+            "bottom middle" => break (1,2),
+            "center bottom" => break (1,2),
+            "middle bottom" => break (1,2),
+
+            "bottom right" => break (2,2),
+            "right bottom" => break (2,2),
+            _ => {
+                println!("Invalid move. Please describe your move as \"top/center/bottom right/center/left\", or \"top/right/bottom/left/center\"");
+                continue
+            }
+        }
+    }
+}
+
+fn suggest_move_based_on_ai(board: &Board) -> Option<Move> {
+    let winning_moves = find_winning_moves(board, Player::O);
+    let threatening_moves = find_threatening_moves(board, Player::O);
+
+    winning_moves.first().or_else(|| threatening_moves.first()).cloned()
+}

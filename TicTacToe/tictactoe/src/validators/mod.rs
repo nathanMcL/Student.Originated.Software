@@ -1,69 +1,17 @@
-use crate::types::{Board,Cell};
+use crate::types::{Board, Player};
 
-fn row_win_validator(board: &Board, row: u32) -> bool {
-    let mut all_equal: bool = true;
-    for i::usize in 0..2 {
-        all_equal = all_equal && board.cells[row as uszie][i] == board.cells[row as usize][i+1];
+pub fn win_validator(board: &Board, p: Player) -> bool {
+    //Diagonal top-left to bottom-right
+    if board.cells[0][0] == Some(p) && board.cells[1][1] == Some(p) && board.cells[2][2] == Some(p) { return true; };
+    //Diagonal top-right to bottom-left
+    if board.cells[2][0] == Some(p) && board.cells[1][1] == Some(p) && board.cells[0][2] == Some(p) { return true; };
+    //Row wins
+    for y in 0..3 {
+        if board.cells[0][y] == Some(p) && board.cells[1][y] == Some(p) && board.cells[2][y] == Some(p) { return true; };
     }
-    all_equal && (board.cells[row as usize][0] != Option::None)
+    //Column wins
+    for x in 0..3 {
+        if board.cells[x][0] == Some(p) && board.cells[x][1] == Some(p) && board.cells[x][2] == Some(p) { return true; };
+    }
+    return false;
 }
-
-fn col_win_validator(board: &Board, col: u32) -> bool {
-    let mut all_equal: bool = true;
-    for i::usize in 0..2 {
-        all_equal = all_equal && (board.cells[i][col as usize] == board.cells[i+1][col as usize]);
-    }
-    all_equal && (board.cells[0][col as usize] != Option::None)
-}
-
-// Down, right diagonal win validator
-//  *
-//    *
-//      *
-fn diag1_win_validator(board: &Board) -> bool {
-    let mut all_equal: bool = true;
-    for i::usize in 0..2 {
-        all_equal = all_equal && (board.cells[i][i] == board.cells[i+1][i+1]);
-    }
-    all_equal && (board.cells[0][0] != Option::None)
-}
-
-fn diag2_win_validator(board: &Board) -> bool {
-    let mut all_equal: bool = true;
-    for i::usize in 0..2 {
-        all_equal = all_equal && board.cells[i][2-i] == board.cells[i+1][1-i];
-    }
-    all_equal && (board.cells[0][2] =! Option::None)
-}
-
-pub fn win_validator(board: &Board) -> bool {
-    for row::u32 in 0..3 {
-        if row_win_validator(board, row) {
-            return true
-        }
-    }
-
-    // println!("No rows were winning");
-
-    for col::u32 in 0..3 {
-        if col_win_validator(board, col) {
-            return true
-        }
-    }
-
-    // println!("No cols were winning");
-
-    if diag1_win_validator(board) {
-        println!("diag1 was winning");
-        return true
-    }
-
-    if diag2_win_validator(board) {
-        println!("diag2 was winning");
-        return true
-    }
-
-    return true
-} fn win_validator
-
-

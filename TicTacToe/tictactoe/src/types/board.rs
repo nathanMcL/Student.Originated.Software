@@ -1,5 +1,6 @@
 use super::{Board,Cell,Player,Move};
 use crate::moves::MoveError;
+use std::fmt;
 
 const EMPTY_BOARD: [[Cell; 3]; 3] = [
     [ Cell::None, Cell::None, Cell::None,],
@@ -7,42 +8,31 @@ const EMPTY_BOARD: [[Cell; 3]; 3] = [
     [ Cell::None, Cell::None, Cell::None,],
 ];
 
-impl Board<'_> {
+impl fmt::Display for Board {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        for i in 0..3 {
+            write!(f, "-------------\n")?;
+            for j in 0..3 {
+                write!(f, "| {} ", self.cells[j][i].as_ref().map_or(" ", |p| match p {Player::O => "O", Player::X => "X"}))?
+            }
+            write!(f, "|\n")?
+        }
+        write!(f, "-------------\n\n")
+    }
+}
+
+impl Board {
     pub fn new() -> Self {
-        Board {
-            next_to_move: &Player::O,
-            cells: EMPTY_BOARD,
+        Board { cells: EMPTY_BOARD }
+    }
+
+    pub fn make_move(&mut self, new_move: &Move, player: Player) -> Option<MoveError> {
+        let (x, y) = (new_move.coords.0, new_move.coords.1);
+        if self.cells[x as usize][y as usize] != Cell::None {
+            Some(MoveError::CellTaken)
+        } else {
+            self.cells[x as usize][y as usize] = Some(player);
+            Option::None
         }
     }
-    pub fn clone(&self) -> Self {
-        let mut cells: [[Cell; 3]; 3] = EMPTY_BOARD.clone();
-        for i::usize in 0..2 {
-            for j::usize in 0..2 {
-                cells[i][j] = self.cells[i][j];
-            }
-        }
-        Board { next_to_move: self.next_to_move, cells }
-    }
-    pub fn make_move<'a>(&'a mut self, new_move: &'a Move, player: &Player) -> (Option<MoveError>) {
-        //let mut new_board = Board::clone(self);
-        //if move_player == self.next_to_move {
-            let new_row: u8 = new_move.coords.0;
-            let new_col: u8 = new_move.coords.1;
-            if new_row < 3 && new_col < 3 {
-                if self.cells[new_row as usize][new_col as usize] != None {
-                    Some(MoveError::WrongPlayer)
-                } else if player != self.next_to_move {
-                    Some(MoveError::WrongPlayer)
-                } else {
-                    self.cells[new_row as usize][new_col as usize] = Some(self.next_to_move);
-                    self.next_to_move = self.next_to_move.other();
-                    Option::None
-                }
-            } else {
-                Some(MoveError::OutOfBounds)
-            }
-        //} else {
-        //    (Some(MoveError::WrongPlayer))
-        //}
-    }
-} impl Board<'static>
+}
