@@ -2,6 +2,7 @@
 
 Welcome to my Student Originated Software repository. <br>
 This repository is a collection of utility tools designed to collect and manipulate data, do simple calculations, and a neglected blog ...<br>
+Wiki Dev Diary https://github.com/nathanMcL/Student.Originated.Software/wiki
 
 
 ## Software Programs
