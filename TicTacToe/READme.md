@@ -22,5 +22,7 @@ Started modifying the game. I am trying to use the logic that the Ai uses to det
 
 ## 4/30/2024
 
-Once the player moves, the Ai moves. On the player's next move an option becomes available named ```suggest```, the player can enter for assitance. The ```suggest``` option will provide the player a move choice the player can enter.
+Once the player moves, the Ai moves. On the player's next move an option becomes available named ```suggest```, the player can enter for assitance. The ```suggest``` option will provide the player a move choice the player can enter.<br>
+
+[![asciicast](https://asciinema.org/a/g9RbKBlzT4GLnxvwZky7gRW7V.svg)](https://asciinema.org/a/g9RbKBlzT4GLnxvwZky7gRW7V)
 
