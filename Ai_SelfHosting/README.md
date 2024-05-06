@@ -127,6 +127,48 @@ Date and Time, Total Epochs, Images per Epoch, and Training Accuracy
 Date and Time,Total Epochs,Images per Epoch,Training Accuracy
 2024-04-26 05:02:08,50,60000,53.059999999999995
 ```
+## 05/06/2024
+
+Implemented two features for the MNIST trainer.<br>
+- Training and Validation sets
+- Average time spent per Epoch
+
+### Training and Validation
+In machine learning, tasks like training a neural network, the dataset can be thought of in three parts:<br>
+- Training set: Used to train the model.<br>
+- Validation set: Used to adjust the parameters and avoid overfitting.<br>
+- Test set: Used to test the mode's performance after the training process.<br>
+
+The `validation_split` parameter in the MNIST trainer’s `network.py` script directly influences how the training data is split into training and validation sets. The parameter specifies the fraction of the training data to be used as the validation set. For example, a `validation_split` of 0.1 means that 10% of the training data is set aside for validation purposes, while the remaining 90% is used for training the model.<br>
+
+### Okay... now how does the `validation_split` work?<br>
+
+Within the Python `network.py` file, in the main method of the script `SGD` where the validation split is used.<br>
+
+```
+split_at = int(len(training_data) * (1 - validation_split))
+validation_data = training_data[split_at:]
+training_data = training_data[:split_at]
+```
+### nice!.. But what are the benefits of using a Validation Split in the MNIST trainer?<br>
+
+- The validation set allows you to fine-tune the parameters like the learning rate, number of epochs, mini-batch size.<br>
+
+- Overfitting occurs when a model learns the training data too well, including the noise and fluctuations in the data, to the extent that it performs poorly on new data. By monitoring the model’s performance on the validation set, you can stop the training early if the validation error starts increasing.<br>
+
+- The validation process provides a feedback loop during training, giving insights into how well the model is learning and generalizing from epoch to epoch.
+
+### Average time spent per Epoch
+
+The Average time spent per Epoch or `average_epoch_duration` is pretty straight forward. Creating a timer within the main loop that marks time for each of the Epochs. Once the program has completed its training, the average time it took per Epoch will be printed to the terminal and the CSV file.<br>
+```
+end_epoch_time = time.time()  # End time for each epoch
+epoch_duration = end_epoch_time - start_epoch_time
+epoch_durations.append(epoch_duration)  # Append duration to list
+
+
+ print(f"Average Epoch Duration: {average_epoch_duration} seconds, Final Accuracy: {accuracy}%")
+```
 
 
 
