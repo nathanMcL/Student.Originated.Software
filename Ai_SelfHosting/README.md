@@ -1,5 +1,5 @@
 ```
-ProtoType 08
+ProtoType 08, Prototype_text
 ```
 
 
@@ -169,10 +169,16 @@ epoch_durations.append(epoch_duration)  # Append duration to list
 
  print(f"Average Epoch Duration: {average_epoch_duration} seconds, Final Accuracy: {accuracy}%")
 ```
-![Screenshot (537)](https://github.com/nathanMcL/Student.Originated.Software/assets/129904249/680a02bd-86d2-4223-b66a-33de7f0f942c)
+![Screenshot (537)](https://github.com/TheEvergreenStateCollege/upper-division-cs/assets/129904249/a0a0e32c-33bc-4881-846b-ac65f2511ef3)
 
-![Screenshot (538)](https://github.com/nathanMcL/Student.Originated.Software/assets/129904249/19920cc0-965b-4739-b85d-f7392c07ae63)
+![Screenshot (538)](https://github.com/TheEvergreenStateCollege/upper-division-cs/assets/129904249/e69d9085-8611-41e3-8a79-632e2e4447f0)
 
+## 05/08/2024
+### The Art of War, By Sun Tzu 
+
+Prototype_LLM `process.py.py` <br>
+
+![Screenshot (541)](https://github.com/TheEvergreenStateCollege/upper-division-cs/assets/129904249/ea39b1d7-424d-4bf9-b1ca-5d54a88afdd4)
 
 
 
@@ -192,6 +198,7 @@ Figure out how to improve the algorithm to:
 Example of how you can run the program once you have navigated to the directory.
 ```python3 prototype-00```
 ```python3 train.py```
+```process.py.py```
 
 
 
