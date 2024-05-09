@@ -176,7 +176,7 @@ epoch_durations.append(epoch_duration)  # Append duration to list
 ## 05/08/2024
 ### The Art of War, By Sun Tzu 
 
-Prototype_LLM `process.py.py` <br>
+Prototype_LLM `process.py` <br>
 
 ![Screenshot (541)](https://github.com/TheEvergreenStateCollege/upper-division-cs/assets/129904249/ea39b1d7-424d-4bf9-b1ca-5d54a88afdd4)
 
@@ -198,7 +198,7 @@ Figure out how to improve the algorithm to:
 Example of how you can run the program once you have navigated to the directory.
 ```python3 prototype-00```
 ```python3 train.py```
-```process.py.py```
+```process.py```
 
 
 
