@@ -175,12 +175,31 @@ epoch_durations.append(epoch_duration)  # Append duration to list
 
 ## 05/08/2024
 ### The Art of War, By Sun Tzu 
-
-Prototype_LLM `process.py` <br>
+`Prototype_text.py`
 
 ![Screenshot (541)](https://github.com/TheEvergreenStateCollege/upper-division-cs/assets/129904249/ea39b1d7-424d-4bf9-b1ca-5d54a88afdd4)
 
+## 05/12/2024
 
+### Tokenization
+Tokenize the words... `tokenizer = tiktoken.get_encoding`
+What does it mean to tokenize the words?<br>
+
+Tokenizing a word involves assigning numerical values to each word within the document, enabling the model to process and understand the text. Here's an example of how a large language model might tokenize the sentence "Cat mastering LLMs: Pawsitive progress, zero bugs!":<br>
+```
+[818] Cat
+[818, 262] Cat mastering
+[818, 262, 4252] Cat mastering LLM
+[818, 262, 4252, 18250] Cat mastering LLMs:
+[818, 262, 4252, 18250, 8812] Cat mastering LLMs: Pawsitive
+[818, 262, 4252, 18250, 8812, 2114] Cat mastering LLMs: Pawsitive progress
+[818, 262, 4252, 18250, 8812, 2114, 286] Cat mastering LLMs: Pawsitive progress,
+[818, 262, 4252, 18250, 8812, 2114, 286, 617] Cat mastering LLMs: Pawsitive progress, zero
+[818, 262, 4252, 18250, 8812, 2114, 286, 617, 34680] Cat mastering LLMs: Pawsitive progress, zero bugs
+[818, 262, 4252, 18250, 8812, 2114, 286, 617, 34680, 27271] Cat mastering LLMs: Pawsitive progress, zero bugs!"
+```
+
+By tokenizing, the model converts words into numerical values, which allows it to efficiently process and generate responses based on those values.<br>
 
 ## todo:
 
@@ -198,7 +217,6 @@ Figure out how to improve the algorithm to:
 Example of how you can run the program once you have navigated to the directory.
 ```python3 prototype-00```
 ```python3 train.py```
-```process.py```
 
 
 
