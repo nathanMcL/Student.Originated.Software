@@ -268,6 +268,9 @@ So, besides resolving my errors, I was able to compile week 7 program files.<br>
 
 ![Screenshot (553)](https://github.com/TheEvergreenStateCollege/upper-division-cs/assets/129904249/2f1a0769-0233-4640-b025-a48bb0c87c08)
 
+![Screenshot (554)](https://github.com/nathanMcL/Student.Originated.Software/assets/129904249/f84b097b-cbca-46b8-9cfc-2c25585aef62)
+
+
 Next up:
 What does this `Token ID:` mean?
 
