@@ -285,6 +285,10 @@ Token ID:
         [ 4625,  1169,  1941,    21],
         [47247, 41603, 19187,   436]])
 ```
+## 05/22/2024 Week-08
+How do I increase the size of the tensor deminsions?<br>
+![Screenshot (567)](https://github.com/nathanMcL/Student.Originated.Software/assets/129904249/83189244-076f-4c86-9bcf-774a99b38e9d)
+
 
 
 ## todo:
