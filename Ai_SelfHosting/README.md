@@ -287,6 +287,7 @@ Token ID:
 ```
 ## 05/22/2024 Week-08
 How do I increase the size of the tensor deminsions?<br>
+
 ![Screenshot (567)](https://github.com/nathanMcL/Student.Originated.Software/assets/129904249/83189244-076f-4c86-9bcf-774a99b38e9d)
 
 
