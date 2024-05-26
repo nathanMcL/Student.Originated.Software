@@ -290,7 +290,25 @@ How do I increase the size of the tensor deminsions?<br>
 
 ![Screenshot (567)](https://github.com/nathanMcL/Student.Originated.Software/assets/129904249/83189244-076f-4c86-9bcf-774a99b38e9d)
 
+## 05/25/2024
+The `tensor` from the `Token ID:` from the previous days(05/17/2024) entry, is a multi-dimensional array of numerical values used to represent different aspects of the text data. <br>
+```
+Token ID:
+ tensor([[  547,  4030,  3938,  9322],
+        [ 4411,   600,   258,  8534],
+        [  515,  6738, 45529,    13],
+        [   64,  1659,   198, 22602],
+        [23893,  2024,    11,   271],
+        [  329,   340,   198,  1326],
+        [ 4625,  1169,  1941,    21],
+        [47247, 41603, 19187,   436]])
 
+```
+in this tensor, each numerical value is a token ID that corresponds to a specific word ro subword token derived from the text dataset "The Art of War" by Sun Tzu. The process of tokenization converts the text into these numerical values. This allows the LLM to process and understand the text.<br>
+
+- Rows & Columns: Each row in the tensor is a sequance of token IDs, where each ID corresponds to a token in the text.<br>
+- Tokens: Tokens are values assigned to words within the data set. So, the token ID `547` could correspond to the word "war", and `4030` might correspond to the word "strategy."
+- Each ID is mapped to a specific word or subword in the tokenizer's vocabulary data set.
 
 ## todo:
 
@@ -306,8 +324,9 @@ Figure out how to improve the algorithm to:
 
 ## How to run our demo
 Example of how you can run the program once you have navigated to the directory.
-```python3 prototype-00```
-```python3 train.py```
+```python3 prototype-00```<br>
+```python3 train.py```<br>
+```python3 process.py```<br>
 
 
 
