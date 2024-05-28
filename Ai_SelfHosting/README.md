@@ -309,6 +309,29 @@ in this tensor, each numerical value is a token ID that corresponds to a specifi
 - Rows & Columns: Each row in the tensor is a sequance of token IDs, where each ID corresponds to a token in the text.<br>
 - Tokens: Tokens are values assigned to words within the data set. So, the token ID `547` could correspond to the word "war", and `4030` might correspond to the word "strategy."
 - Each ID is mapped to a specific word or subword in the tokenizer's vocabulary data set.
+ 
+
+## 05/28/2024: `Project_LLM/week-10`<br>
+### `GELUactivation.py`<br>
+Pg 122: 4.3: Implementing the GELU activation function. <br>
+GELU is a small neural network submodule that is used as part of
+the transformer block in LLMs.<br>
+The image shows the GELU gradual non-linear curve from zero compared to the ReLU's sharper corner at zero.<br>
+"<br>
+the ReLU activation function has been used in deep learning due to its simplicity and effectiveness across various neural network architectures. However, in LLMs, several other activation functions are employed beyond the ReLU activation function. An example is GELU (Gaussian Error Linear Unit).<br>
+GELU is a more complex and smooth activation function that incorporates the Gaussian linear units, respectively. They offer improved performance for deep learning models, unlike the simpler ReLU.<br>
+"<br.
+![Screenshot (572)](https://github.com/nathanMcL/Student.Originated.Software/assets/129904249/91b6c2c9-ce2e-4843-ab94-61e2738a5297)
+
+
+"<br>
+Looking at the resulting plots, ReLU is a piecewise linear function that outputs the input directly if it is positive; otherwise, it outputs zero. GELU is a smooth, non-linear function that approximates ReLU but with a non-zero gradient for negative values.<br>
+"<br>
+
+"<br>
+The smoothness of GELU, as shown, can lead to better optimization properties during training, as it allows for more nuanced adjustments to the model's parameters. In contrast, ReLU has a sharp corner at zero, which can sometimes make optimization harder, especially in networks that are very deep or have complex architectures. So, unlike RELU, which outputs zero for any negative input, GELU allows for a small, non-zero output for negative values. This characteristic means that during the training process, neurons that receive negative input can still contribute to the learning process.<br>
+"<br> 
+(Words transcribed from Buld a Large Language Model (from scratch)) By: Sebastian Raschka.<br>
 
 ## todo:
 
