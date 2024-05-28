@@ -333,6 +333,10 @@ The smoothness of GELU, as shown, can lead to better optimization properties dur
 "<br> 
 (Words transcribed from Buld a Large Language Model (from scratch)) By: Sebastian Raschka.<br>
 
+### `GELU_ReLU.png`
+![Screenshot (573)](https://github.com/nathanMcL/Student.Originated.Software/assets/129904249/5e7ba08e-39d9-438b-9309-2254a0b2e185)
+
+
 ## todo:
 
 ```
