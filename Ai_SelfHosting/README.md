@@ -320,7 +320,7 @@ The image shows the GELU gradual non-linear curve from zero compared to the ReLU
 "<br>
 the ReLU activation function has been used in deep learning due to its simplicity and effectiveness across various neural network architectures. However, in LLMs, several other activation functions are employed beyond the ReLU activation function. An example is GELU (Gaussian Error Linear Unit).<br>
 GELU is a more complex and smooth activation function that incorporates the Gaussian linear units, respectively. They offer improved performance for deep learning models, unlike the simpler ReLU.<br>
-"<br.
+"<br>
 ![Screenshot (572)](https://github.com/nathanMcL/Student.Originated.Software/assets/129904249/91b6c2c9-ce2e-4843-ab94-61e2738a5297)
 
 
@@ -335,6 +335,19 @@ The smoothness of GELU, as shown, can lead to better optimization properties dur
 
 ### `GELU_ReLU.png`
 ![Screenshot (573)](https://github.com/nathanMcL/Student.Originated.Software/assets/129904249/5e7ba08e-39d9-438b-9309-2254a0b2e185)
+
+## 05/31/2024
+### It's Alive! ALIVE!! well sorta :)
+10 Epoch training cycle.<br>
+![Screenshot (582)](https://github.com/nathanMcL/Student.Originated.Software/assets/129904249/5ccfa8d5-8d65-44a0-9c7e-0974770241b6)
+
+##Training loss VS. Validation loss
+![Screenshot (583)](https://github.com/nathanMcL/Student.Originated.Software/assets/129904249/d8d9844e-eec6-420f-90b6-9123a041f0e6)
+
+## Training_log.csv
+![Screenshot (584)](https://github.com/nathanMcL/Student.Originated.Software/assets/129904249/1c683662-f739-4aae-b2d3-fd5c0cc25f48)
+
+
 
 
 ## todo:
