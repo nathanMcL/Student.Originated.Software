@@ -344,6 +344,9 @@ The smoothness of GELU, as shown, can lead to better optimization properties dur
 ##Training loss VS. Validation loss
 ![Screenshot (583)](https://github.com/nathanMcL/Student.Originated.Software/assets/129904249/d8d9844e-eec6-420f-90b6-9123a041f0e6)
 
+- Training Loss: The training loss decreases steadily, indicating that the model is learning from the training data.
+- Validation Loss: The validation loss decreases initially but then begins to plateau, which might indicate that the model is reaching its capacity to generalize from the training data.
+
 ## Training_log.csv
 ![Screenshot (584)](https://github.com/nathanMcL/Student.Originated.Software/assets/129904249/1c683662-f739-4aae-b2d3-fd5c0cc25f48)
 
