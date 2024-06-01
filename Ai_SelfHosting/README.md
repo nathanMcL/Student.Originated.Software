@@ -357,6 +357,21 @@ Updates:<br>
 - update `GPTLogging` to process the additonal `resources` data.<br>
 - update `gpt_train.py` to handle using additional `resources`.<br>
 
+### 06/01/24 1500 `Chat_log`
+After producing three seperate training models and using the models in `GPT_gabba.py` as its sources for producing a response. Currently the response dosesn't make since, see the following screenshot.<br>
+
+![Screenshot (586)](https://github.com/nathanMcL/Student.Originated.Software/assets/129904249/e4fd6af3-8e83-4dec-bbd2-70b86bed4488)
+
+- After searching things up, I learned that I can adjust the `OTHER_SETTINGS` parameters.<br>
+```
+OTHER_SETTINGS = {
+        "learning_rate": 1e-4,  # Original value was: 5e-4,
+        "num_epochs": 20,       # Increase number of epochs from 10 to 20
+        "batch_size": 4,        # Increase the batch size
+```
+- By slowing down the rate the model learns it should make the learning process more stable.<br>
+- Increasing the number of epochs from 10 to 20, the model has more opertunities to see the training data, this can help it learn better patterns.<br>
+- A smaller batch sizes provides more updates per epoch and can improve generalization, but too small batch sizes can lead to noisy updates. Larger batch sizes provide more stable updates but can require more memory.
 
 ## todo:
 Always seek improvements<br>
