@@ -354,7 +354,7 @@ The smoothness of GELU, as shown, can lead to better optimization properties dur
 
 
 ## todo:
-
+Always seek improvements<br>
 ```
 Figure out how to improve the algorithm to:
  increase its recognition,
