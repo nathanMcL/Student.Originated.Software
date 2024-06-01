@@ -369,9 +369,9 @@ OTHER_SETTINGS = {
         "num_epochs": 20,       # Increase number of epochs from 10 to 20
         "batch_size": 4,        # Increase the batch size
 ```
-- By slowing down the rate the model learns it should make the learning process more stable.<br>
-- Increasing the number of epochs from 10 to 20, the model has more opertunities to see the training data, this can help it learn better patterns.<br>
-- A smaller batch sizes provides more updates per epoch and can improve generalization, but too small batch sizes can lead to noisy updates. Larger batch sizes provide more stable updates but can require more memory.
+ By slowing down the rate the model learns it should make the learning process more stable.<br>
+- Increasing the number of epochs from 10 to 20, the model has more opportunities to see the training data, this can help it learn better patterns.<br>
+- A smaller batch size provides more updates per epoch and can improve generalization, but too small batch sizes can lead to noisy updates. Larger batch sizes provide more stable updates but can require more memory.<br>
 
 ## todo:
 Always seek improvements<br>
