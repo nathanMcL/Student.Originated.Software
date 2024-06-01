@@ -350,7 +350,12 @@ The smoothness of GELU, as shown, can lead to better optimization properties dur
 ## Training_log.csv
 ![Screenshot (584)](https://github.com/nathanMcL/Student.Originated.Software/assets/129904249/1c683662-f739-4aae-b2d3-fd5c0cc25f48)
 
-
+## 06/01/2024
+While pondering...<br>
+Updates:<br>
+- Find another source to incorperate into the data set, so that `gpt_train.py` uses multiple sources from the `resources` directory.<br>
+- update `GPTLogging` to process the additonal `resources` data.<br>
+- update `gpt_train.py` to handle using additional `resources`.<br>
 
 
 ## todo:
@@ -359,6 +364,7 @@ Always seek improvements<br>
 Figure out how to improve the algorithm to:
  increase its recognition,
  increase wall-clock speed,
+ improve the data collection,
 
 ```
 
