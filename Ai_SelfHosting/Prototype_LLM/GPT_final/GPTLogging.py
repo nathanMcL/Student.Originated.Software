@@ -2,13 +2,12 @@ import csv
 import time
 import os
 
-
 class GPTLogging:
     def __init__(self, log_file):
         self.log_file = log_file
         self.epoch_times = []
         self.log_headers = [
-            "Epoch", "Total Steps", "Avg Training Loss", "Avg Validation Loss", "Time per Epoch (seconds)", "Generated Sentence"
+            "Epoch", "Total Steps", "Avg Training Loss", "Avg Validation Loss", "Time per Epoch (seconds)", "Generated Sentence", "Resource"
         ]
 
         # Create the log files and write the headers
@@ -17,10 +16,13 @@ class GPTLogging:
                 writer = csv.writer(file)
                 writer.writerow(self.log_headers)
 
+    def log_start_time(self):
+        self.start_time = time.time()
+
     def start_epoch(self):
         self.epoch_start_time = time.time()
 
-    def end_epoch(self, epoch, total_steps, avg_train_loss, avg_val_loss, generated_sentence):
+    def end_epoch(self, epoch, total_steps, avg_train_loss, avg_val_loss, generated_sentence, resource):
         epoch_end_time = time.time()
         epoch_duration = epoch_end_time - self.epoch_start_time
         self.epoch_times.append(epoch_duration)
@@ -31,5 +33,5 @@ class GPTLogging:
         with open(self.log_file, mode='a', newline='') as file:
             writer = csv.writer(file)
             writer.writerow([
-                epoch, total_steps, avg_train_loss, avg_val_loss, avg_epoch_time, generated_sentence
+                epoch, total_steps, avg_train_loss, avg_val_loss, avg_epoch_time, generated_sentence, resource
             ])
