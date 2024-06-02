@@ -373,6 +373,12 @@ OTHER_SETTINGS = {
 - Increasing the number of epochs from 10 to 20, the model has more opportunities to see the training data, this can help it learn better patterns.<br>
 - A smaller batch size provides more updates per epoch and can improve generalization, but too small batch sizes can lead to noisy updates. Larger batch sizes provide more stable updates but can require more memory.<br>
 
+## 06/02/2024 Killed!!!
+![Screenshot (588)](https://github.com/nathanMcL/Student.Originated.Software/assets/129904249/d5e40d5d-54b0-4fc7-a45e-ff55186f92c1)
+- Because I have added more resources that are used while training, with a batch size of 4, and a learning rate of 3e-4. The amount of new resources to process, tokeninze, create new weights and bias, etc... With the batch rate at 4 uses more memory and system hardware resources, and well my local machine needs more power!!! <br>
+- The message "Killed" might indicate that the program was terminated by the system, because the excessive memory usage or running out of available resources. Training large models like GPT can be very resource-intensive, especially with increased batch sizes and longer training durations.
+
+
 ## todo:
 Always seek improvements<br>
 ```
