@@ -378,6 +378,25 @@ OTHER_SETTINGS = {
 - Because I have added more resources that are used while training, with a batch size of 4, and a learning rate of 3e-4. The amount of new resources to process, tokeninze, create new weights and bias, etc... With the batch rate at 4 uses more memory and system hardware resources, and well my local machine needs more power!!! <br>
 - The message "Killed" might indicate that the program was terminated by the system, because the excessive memory usage or running out of available resources. Training large models like GPT can be very resource-intensive, especially with increased batch sizes and longer training durations.
 
+### `gpt_train_loss.pdf`
+![Screenshot (589)](https://github.com/nathanMcL/Student.Originated.Software/assets/129904249/ce788f57-2957-45d1-ab15-9ff1f23a78bf)
+
+- With the additional data set resources, more epochs, slower learning rate.<br>
+```
+OTHER_SETTINGS = {
+        "learning_rate": 3e-4,  # Original value was: 5e-4,
+        "num_epochs": 20,       # Increase number of epochs from 10 to 20
+        "batch_size": 2,        # Increase the batch size or Decrease. 
+        "weight_decay": 0.1
+    }
+```
+- I am trying to figure out how to stabilize the `Training loss` as it decreases.<br>
+- I like how the `Validation loss` has lowered, but I think that is due to the increased data set...<br>
+- I am not sure if the `Validation loss` should have dropped that dramatically, then it starts to plateau before rising again.<br>
+
+
+
+
 
 ## todo:
 Always seek improvements<br>
