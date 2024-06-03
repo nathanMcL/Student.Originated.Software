@@ -9,5 +9,5 @@ extern "C" {
 
 #[wasm_bindgen]
 pub fn greet() {
-    alert("Hello, Welcome to NMac's wasm-game-of-life!");
+    alert("Hello, wasm-game-of-life!");
 }
