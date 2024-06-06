@@ -414,7 +414,27 @@ resource_files = [
 I uploaded the most recent CSV data from my local machine. With training in gitpod I hope to see different out put.<br> 
 I was only able to get up to epoch 7 before gitpod timedout.<br>
 
+## 06/06/2024
+### GPT_final_two<br>
+`gpt_train.py`<br>
+Multithreading for Data Loading:<br>
+From `gpt_train.py` the function `load_data_parallel` & in `previous_chapters.py` the function `GPTDatasetV1`.<br>
 
+- Using the multiprocessing module to parallelize the process of loading data from multiple PDF files.<br>
+
+- load_data_parallel function utilizes `multiprocessing.Pool` to distribute the file loading task across multiple CPU cores.<br>
+
+- Each file is processed by the `load_single_file` function, which reads the text from the PDF using pdfplumber.<br>
+
+### Benefits of the Multithreading and Caching Implementation:<br>
+Improved Data Loading Speed:<br>
+- By using multiple CPU cores to load PDF files in parallel, the data loading process becomes much faster compared to a single-threaded approach.
+Reduced Computation Time:<br>
+
+- Caching the results of tokenization and chunk processing ensures that repeated executions with the same data do not require re-computation, saving time.
+Efficient Resource Utilization:<br>
+
+- Utilizing the full computational capacity of the CPU improves overall performance and efficiency of the data loading and preprocessing steps.<br>
 
 ## todo:
 Always seek improvements<br>
