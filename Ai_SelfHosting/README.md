@@ -460,14 +460,15 @@ Example of how you can run the program once you have navigated to the directory.
 
 
 ## How we built it
-
-
+### Build a Large Language Model (from scratch) By: Sebastian Raschka
+- https://livebook.manning.com/book/build-a-large-language-model-from-scratch/welcome/v-6/5 <br>
+### Github
+- https://github.com/rasbt/LLMs-from-scratch
 
 
 
 
 ## Challenges we ran into
-
 
 
 
