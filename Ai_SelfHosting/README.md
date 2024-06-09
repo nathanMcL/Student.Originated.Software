@@ -401,6 +401,8 @@ Attemping to train `gpt_train.py` in gitpod... must install dependancies each ti
 pip install matplotlib && pip install tiktoken && pip install torch && pip install pdfplumber && pip install joblib
 ```
 Next, I needed to change the resource file paths to reflect the GitHub / GitPod environment.<br>
+
+### Class repo version
 ```
 resource_files = [
         "/workspace/upper-division-cs/ai-24sp/assignments/NathanMc/Prototype_text/resources/ArtOfWar.pdf",  # The Art of War, By Sun Tzu
@@ -408,6 +410,17 @@ resource_files = [
         "/workspace/upper-division-cs/ai-24sp/assignments/NathanMc/Prototype_text/resources/LDRSHIP_ARN36735-FM_6-22-000-WEB-1.pdf",  # Army Leardership
         "/workspace/upper-division-cs/ai-24sp/assignments/NathanMc/Prototype_text/resources/DrillandCer_ARN32297-TC_3-21.5-000-WEB-1.pdf",  # Army Drill and Ceremonies
         "/workspace/upper-division-cs/ai-24sp/assignments/NathanMc/Prototype_text/resources/PhysFitARN30964-FM_7-22-001-WEB-4.pdf" # Army Physical Readiness Training
+    ]
+```
+### Personal Repo version
+```
+try:
+        resource_files = [
+            "/workspace/Student.Originated.Software/Ai_SelfHosting/Prototype_LLM/resources/ArtOfWar.pdf",  # The Art of War, By Sun Tzu
+            "/workspace/Student.Originated.Software/Ai_SelfHosting/Prototype_LLM/resources/BlueBookTP600-4.pdf",  # New recurit, Basic Training book
+            "/workspace/Student.Originated.Software/Ai_SelfHosting/Prototype_LLM/resources/LDRSHIP_ARN36735-FM_6-22-000-WEB-1.pdf",  # Army Leardership
+            "/workspace/Student.Originated.Software/Ai_SelfHosting/Prototype_LLM/resources/DrillandCer_ARN32297-TC_3-21.5-000-WEB-1.pdf",  # Army Drill and Ceremonies
+            "/workspace/Student.Originated.Software/Ai_SelfHosting/Prototype_LLM/resources/PhysFitARN30964-FM_7-22-001-WEB-4.pdf" # Army Physical Readiness Training
     ]
 ```
 ### Gitpod `gpt_training.py` <br>
@@ -435,6 +448,21 @@ Reduced Computation Time:<br>
 Efficient Resource Utilization:<br>
 
 - Utilizing the full computational capacity of the CPU improves overall performance and efficiency of the data loading and preprocessing steps.<br>
+
+## 06/09/2024
+### GPT_final_two<br>
+On my local machine.<br>
+![Screenshot (597)](https://github.com/nathanMcL/Student.Originated.Software/assets/129904249/3d999b8d-380a-429b-881f-a5172fdccee1)
+![Screenshot (598)](https://github.com/nathanMcL/Student.Originated.Software/assets/129904249/a5bd49af-e395-4c54-947b-56e079c72865)
+
+ 
+While the LLM `gpt_train.py` training program is running it consumes the devices resources, in this particular case, my Windows Surface Book 2. <br>
+Running a LLM on a laptop, requires me to stop or close unnessisary programs, processes, etc that may be running. With more Ram, Memory, and a better Graffics Card I can imagine the program running quicker, and not being killed by the system due to lack of resources.<br>
+<br>
+### Image is a screenshot of my system performance during training.
+<br>
+![Screenshot (600)](https://github.com/nathanMcL/Student.Originated.Software/assets/129904249/ea815af5-a303-45d2-bc2e-f1c6e0246cce)
+
 
 ## todo:
 Always seek improvements<br>
