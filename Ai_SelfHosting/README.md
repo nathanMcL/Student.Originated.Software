@@ -462,8 +462,17 @@ Running a LLM on a laptop, requires me to stop or close unnessisary programs, pr
 ### Image is a screenshot of my system performance during training.
 <br>
 
+```
+My Windows Surface Book 2 with an Intel(R) Core(TM) i7-8650U CPU cores:
+
+Number of Cores: 4
+Number of Threads: 8 
+```
+
 ![Screenshot (600)](https://github.com/nathanMcL/Student.Originated.Software/assets/129904249/c1baa39a-7256-4b0d-b13a-aec39775cf0c)
 
+- Besides other factors regarding my system... I need to see whats up with the graphics card configuration...
+- The CPU and Memory: The high CPU and memory usage are consistent with the demands of training an LLM. My CPU's multi-core and multi-threading capabilities are being leveraged effectively, but the system is nearing its memory limits.<br>
 
 ## todo:
 Always seek improvements<br>
