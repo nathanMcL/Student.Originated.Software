@@ -461,7 +461,8 @@ Running a LLM on a laptop, requires me to stop or close unnessisary programs, pr
 <br>
 ### Image is a screenshot of my system performance during training.
 <br>
-![Screenshot (600)](https://github.com/nathanMcL/Student.Originated.Software/assets/129904249/ea815af5-a303-45d2-bc2e-f1c6e0246cce)
+
+![Screenshot (600)](https://github.com/nathanMcL/Student.Originated.Software/assets/129904249/c1baa39a-7256-4b0d-b13a-aec39775cf0c)
 
 
 ## todo:
