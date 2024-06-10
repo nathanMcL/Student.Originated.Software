@@ -474,6 +474,30 @@ Number of Threads: 8
 - Besides other factors regarding my system... I need to see whats up with the graphics card configuration...
 - The CPU and Memory: The high CPU and memory usage are consistent with the demands of training an LLM. My CPU's multi-core and multi-threading capabilities are being leveraged effectively, but the system is nearing its memory limits.<br>
 
+## 06/10/2024
+### The upgrade
+Now using a Windows Surface Studio 2<br>
+64gb<br>
+2TB<br>
+4060GPU<br>
+After a couple training iterations, This computer handles running `gpt_train.py` so much better.<br>
+
+### `gpt_train_loss.pdf`
+- This `gpt_train_loss.pdf` image similar to my previous entries, shows that over 20 Epochs the `blue` `training loss` decreases with a wide positive and negative lined curve.<br>
+- Notice the `orange` `validation loss`, as it drops it begins to curve about 2.5 Epochs and starts to raise at about 6 Epochs and platue after 15 Epochs.<br> 
+
+![Screenshot (1)](https://github.com/nathanMcL/Student.Originated.Software/assets/129904249/960409e9-22bd-49c7-b077-78d3b592edd2)
+
+-Why does the validation loss raise?<br>
+### Configurations:
+- `num_workers=2  # Use multiple worker threads`
+- ``` OTHER_SETTINGS = {
+        "learning_rate": 2e-4,  # Original value was: 5e-4,
+        "num_epochs": 20,       # Increase number of epochs from 10 to 20
+        "batch_size": 4,        # Increase the batch size or Decrease. 
+        "weight_decay": 0.1
+    }```
+
 ## todo:
 Always seek improvements<br>
 ```
