@@ -492,9 +492,9 @@ After a couple training iterations, This computer handles running `gpt_train.py`
 ### Configurations:
 - `num_workers=2  # Use multiple worker threads`
 - ``` OTHER_SETTINGS = {
-        "learning_rate": 2e-4,  # Original value was: 5e-4,
+        "learning_rate": 3e-4,  # Original value was: 5e-4,
         "num_epochs": 20,       # Increase number of epochs from 10 to 20
-        "batch_size": 4,        # Increase the batch size or Decrease. 
+        "batch_size": 2,        # Increase the batch size or Decrease. 
         "weight_decay": 0.1
     }```
 
