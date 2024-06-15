@@ -525,7 +525,9 @@ lines: 235/245: num_workers=2  # Use multiple worker threads.
     }
 
 ```
-
+### Reminder
+- Change number of workers to 4
+- Run the program again...
 
 ## todo:
 Always seek improvements<br>
