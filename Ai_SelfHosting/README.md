@@ -488,7 +488,8 @@ After a couple training iterations, This computer handles running `gpt_train.py`
 
 ![Screenshot (1)](https://github.com/nathanMcL/Student.Originated.Software/assets/129904249/960409e9-22bd-49c7-b077-78d3b592edd2)
 
--Why does the validation loss raise?<br>
+- Why does the validation loss raise?<br>
+- The trainer starts to overfit...<br>
 ### Configurations:
 - `num_workers=2  # Use multiple worker threads`
 - ``` OTHER_SETTINGS = {
