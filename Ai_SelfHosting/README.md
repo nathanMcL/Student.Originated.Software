@@ -499,6 +499,34 @@ After a couple training iterations, This computer handles running `gpt_train.py`
         "weight_decay": 0.1
     }```
 
+
+## 06/15/2024
+
+### Training Config:
+
+```
+line: 88: accumulation_steps=2):  # Original value was: 4, Changing the value to 2 will increase to frequancy of updates.
+lines: 235/245: num_workers=2  # Use multiple worker threads.
+ GPT_CONFIG_124M = {
+        "vocab_size": 50257,    # Vocabulary size
+        "context_length": 256,  # Shortened context length (orig: 1024)
+        "emb_dim": 768,         # Embedding dimension
+        "n_heads": 12,          # Number of attention heads
+        "n_layers": 12,         # Number of layers
+        "drop_rate": 0.2,       # Dropout rate. Original value was: 0.1
+        "qkv_bias": False       # Query-Key-Value bias
+    }
+
+    OTHER_SETTINGS = {
+        "learning_rate": 3e-4,  # Original value was: 5e-4,
+        "num_epochs": 20,       # Increase number of epochs from 10 to 20
+        "batch_size": 4,        # Increase the batch size or Decrease. Original value was: 2
+        "weight_decay": 0.2     # Original value was: 0.1
+    }
+
+```
+
+
 ## todo:
 Always seek improvements<br>
 ```
@@ -533,7 +561,7 @@ Example of how you can run the program once you have navigated to the directory.
 
 ## Challenges we ran into
 
-
+Hardware resources.
 
 
 
