@@ -505,7 +505,7 @@ After a couple training iterations, This computer handles running `gpt_train.py`
 ### Training Config:
 
 ```
-line: 88: accumulation_steps=2):  # Original value was: 4, Changing the value to 2 will increase to frequancy of updates.
+line: 88: accumulation_steps=2):  # Original value was: 4, Changing the value to 2 will increase the frequancy of updates.
 lines: 235/245: num_workers=2  # Use multiple worker threads.
  GPT_CONFIG_124M = {
         "vocab_size": 50257,    # Vocabulary size
