@@ -524,10 +524,15 @@ lines: 235/245: num_workers=2  # Use multiple worker threads.
         "weight_decay": 0.2     # Original value was: 0.1
     }
 
+
 ```
 ### Reminder
 - Change number of workers to 4
 - Run the program again...
+
+### gpt_train_loss_config_3e4b with two workers.
+![Screenshot (2)](https://github.com/nathanMcL/Student.Originated.Software/assets/129904249/398131d4-8c70-4fbe-9e5a-ca441f6c89e6)
+
 
 ## todo:
 Always seek improvements<br>
