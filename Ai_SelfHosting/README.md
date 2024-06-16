@@ -1,7 +1,8 @@
+I created a Wiki for:
 ```
 ProtoType 08, Prototype_text, GPT_final
 ```
-
+https://github.com/nathanMcL/Student.Originated.Software/wiki/Ai-Selfhosting
 
 ## What is Ai Self-Hosting?
 
