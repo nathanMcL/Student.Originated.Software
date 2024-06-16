@@ -43,7 +43,12 @@ class GPTLogging:
                 epoch, total_steps, avg_train_loss, avg_val_loss, avg_epoch_time, generated_sentence, resource
             ])
 
+    def log(self, message):
+        with open(self.log_file, 'a') as f:
+            writer = csv.writer(f)
+            writer.writerow([message])
+
     def log_chat(self, user_query, gpt_response):
-        with open(self.chat_log_file, mode='a', newline='') as file:
-            writer = csv.writer(file)
+        with open(self.chat_log_file, mode='a', newline='') as f:
+            writer = csv.writer(f)
             writer.writerow([time.strftime("%Y-%m-%d %H:%M:%S"), user_query, gpt_response])

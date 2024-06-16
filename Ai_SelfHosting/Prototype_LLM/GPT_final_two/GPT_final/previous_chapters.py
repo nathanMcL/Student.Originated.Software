@@ -1,8 +1,8 @@
-import tiktoken
-import torch
-import torch.nn as nn
-from torch.utils.data import Dataset, DataLoader
-from joblib import Memory
+import tiktoken  # type: ignore
+import torch  # type: ignore
+import torch.nn as nn  # type: ignore
+from torch.utils.data import Dataset, DataLoader # type: ignore
+from joblib import Memory # type: ignore
 
 # Set up caching
 memory = Memory("cache_dir", verbose=0)
@@ -41,7 +41,7 @@ class GPTDatasetV1(Dataset):
 
 
 def create_dataloader_v1(txt, batch_size=4, max_length=256,
-                         stride=128, shuffle=True, drop_last=True, num_workers=4): # Number of workers relates to number of threads
+                         stride=128, shuffle=True, drop_last=True, num_workers=4):  # Use multiple worker threads. Started with 2.
     """
     Create a DataLoader for the GPT dataset.
 
@@ -59,7 +59,7 @@ def create_dataloader_v1(txt, batch_size=4, max_length=256,
     """
     tokenizer = tiktoken.get_encoding("gpt2")
     dataset = GPTDatasetV1(txt, tokenizer, max_length, stride)
-    dataloader = DataLoader(dataset, batch_size=batch_size, shuffle=shuffle, drop_last=drop_last, num_workers=num_workers)  # Number of workers relates to number of threads
+    dataloader = DataLoader(dataset, batch_size=batch_size, shuffle=shuffle, drop_last=drop_last, num_workers=num_workers)
     return dataloader
 
 
@@ -279,7 +279,7 @@ if __name__ == "__main__":
 
     #print(decoded_text)
 
-    #print(f"\n\n{50*'='}\n{22*' '}OUT\n{50*'='}")
-    #print("\nOutput:", out)
-    #print("Output length:", len(out[0]))
+    print(f"\n\n{50*'='}\n{22*' '}OUT\n{50*'='}")
+    print("\nOutput:", out)
+    print("Output length:", len(out[0]))
     print("Output text:", decoded_text)

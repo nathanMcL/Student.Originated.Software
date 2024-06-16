@@ -1,12 +1,13 @@
-import matplotlib.pyplot as plt
-import tiktoken
-import torch
-import torch.nn as nn
-import pdfplumber
+import matplotlib.pyplot as plt # type: ignore
+import tiktoken # type: ignore
+import torch # type: ignore
+import torch.nn as nn # type: ignore
+import pdfplumber # type: ignore
 import os
 import logging  # Logging
 import multiprocessing as mp  # Parallel Data Loading
 from datetime import datetime  # Import datetime for timestamping
+from torch.optim.lr_scheduler import ReduceLROnPlateau # type: ignore
 
 from previous_chapters import GPTModel, create_dataloader_v1, generate_text_simple
 from GPTLogging import GPTLogging
@@ -84,11 +85,14 @@ def generate_and_print_sample(model, tokenizer, device, start_context):
     return decoded_text.replace("\n", " ")  # Return the generated sentence
 
 def train_model_simple(model, train_loader, val_loader, optimizer, device, num_epochs,
-                       eval_freq, eval_iter, start_context, tokenizer, logger, resource, accumulation_steps=4):
+                       eval_freq, eval_iter, start_context, tokenizer, logger, resource, accumulation_steps=2):  # Original value was: 4, Changing the value to 2 will increase to frequancy of updates.
     # Initialize lists to track losses and tokens seen
     train_losses, val_losses, track_tokens_seen = [], [], []
     tokens_seen = 0
     global_step = -1
+
+    # The scheduler
+    scheduler = ReduceLROnPlateau(optimizer, mode='min', factor=0.1, patience=10, verbose=True)
 
     # Main training loop
     for epoch in range(num_epochs):
@@ -127,6 +131,9 @@ def train_model_simple(model, train_loader, val_loader, optimizer, device, num_e
             model, tokenizer, device, start_context)
         logger.end_epoch(epoch+1, total_steps, avg_train_loss, val_loss, generated_sentence, resource)
 
+        # Step the scheduler based on the validation loss
+        scheduler.step(val_loss)
+
     return train_losses, val_losses, track_tokens_seen, model
     
 def plot_losses(epochs_seen, tokens_seen, train_losses, val_losses):
@@ -145,7 +152,7 @@ def plot_losses(epochs_seen, tokens_seen, train_losses, val_losses):
     ax2.set_xlabel("Tokens seen")
 
     fig.tight_layout()  # Adjust layout to make room
-    # plt.show()
+   
 
 # Timestamp
 def get_timestamp():
@@ -211,6 +218,7 @@ def main(gpt_config, settings):
         optimizer = torch.optim.AdamW(
             model.parameters(), lr=settings["learning_rate"], weight_decay=settings["weight_decay"]
         )
+        scheduler = ReduceLROnPlateau(optimizer, mode='min', factor=0.1, patience=10, verbose=True)
 
         # Set up dataloaders
         # Train/validation ratio
@@ -224,7 +232,7 @@ def main(gpt_config, settings):
             stride=gpt_config["context_length"],
             drop_last=True,
             shuffle=True,
-            num_workers=4  # Use multiple worker threads
+            num_workers=4  # Use multiple worker threads. Started with 2.
         )
 
         val_loader = create_dataloader_v1(
@@ -234,18 +242,18 @@ def main(gpt_config, settings):
             stride=gpt_config["context_length"],
             drop_last=False,
             shuffle=False,
-            num_workers=4  # Use multiple worker threads
+            num_workers=4  # Use multiple worker threads. Started with 2.
         )
 
         # Train model
         tokenizer = tiktoken.get_encoding("gpt2")
         logger = GPTLogging("training_log.csv", "chat_log.csv")
-        logger.log_start_time()  # Log the start date and time
+        logger.log_start_time()  # Log the start time
 
         train_losses, val_losses, tokens_seen, model = train_model_simple(
             model, train_loader, val_loader, optimizer, device,
             num_epochs=settings["num_epochs"], eval_freq=5, eval_iter=1,
-            start_context="I will guard everything within the limits of my post and quit my post only when properly relieved", tokenizer=tokenizer, logger=logger, resource=resource_name, accumulation_steps=4
+            start_context="What is the first General Order?", tokenizer=tokenizer, logger=logger, resource=resource_name, accumulation_steps=2  # Original value was: 4, Changing the value to 2 will increase to frequancy of updates.
         )
 
         # Save the model with a timestamp
@@ -268,16 +276,18 @@ if __name__ == "__main__":
         "emb_dim": 768,         # Embedding dimension
         "n_heads": 12,          # Number of attention heads
         "n_layers": 12,         # Number of layers
-        "drop_rate": 0.1,       # Dropout rate
+        "drop_rate": 0.2,       # Dropout rate. Original value was: 0.1
         "qkv_bias": False       # Query-Key-Value bias
     }
 
     OTHER_SETTINGS = {
         "learning_rate": 3e-4,  # Original value was: 5e-4,
         "num_epochs": 20,       # Increase number of epochs from 10 to 20
-        "batch_size": 2,        # Increase the batch size or Decrease. 
-        "weight_decay": 0.1
+        "batch_size": 2,        # Increase the batch size or Decrease. Original value was: 2
+        "weight_decay": 0.2     # Original value was: 0.1
     }
+
+
 
     # Initiate training
     train_losses, val_losses, tokens_seen, model = main(GPT_CONFIG_124M, OTHER_SETTINGS)

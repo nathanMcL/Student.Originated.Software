@@ -1,7 +1,7 @@
-import torch
-import tiktoken
+import torch  # type: ignore
+import tiktoken  # type: ignore
 
-from previous_chapters import previous_chapter # GPTModel, generate_text_simple
+from previous_chapters import GPTModel, generate_text_simple  # GPTModel, generate_text_simple
 from GPTLogging import GPTLogging
 
 class GPTGab:
@@ -40,9 +40,10 @@ class GPTGab:
                 )
             response = self.token_ids_to_text(token_ids)
             all_responses.append(response)
-        
-        # Aggregate responses 
-        final_response = " ".join(all_responses)
+            self.logger.log(f"Model response: {response}")
+
+        # Aggregate responses and remove duplicates
+        final_response = " ".join(set(all_responses))
         return final_response
 
 if __name__ == "__main__":
@@ -58,7 +59,7 @@ if __name__ == "__main__":
     }
     
     # List of model paths  ## Don't forget to change the model path names after you complete a training session.
-    model_paths = ["model.pth", "model_20240605_215107.pth", "model_20240605_061948.pth"]
+    model_paths = ["model.pth", "model_20240616_070855.pth", "model_20240615_153016.pth"]
 
     # Logging
     logger = GPTLogging(log_file="gabba_log.csv", chat_log_file="chat_log.csv")
