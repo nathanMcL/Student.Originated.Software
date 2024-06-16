@@ -15,7 +15,7 @@ https://github.com/nathanMcL/Student.Originated.Software/wiki/Ai-Selfhosting<br>
 ### Desirable outcomes...
 - The program runs without being killed by the OS, due to resource consumption.
 - Three trained models with CSV & pdf data.
-- `GPT_gabba.py` returns a reasonable response to a query... This could be anything sentence that makes sense...<br>
+- `GPT_gabba.py` returns a reasonable response to a query... This could be anything, a sentence that makes sense...<br>
 - Bonus if it pertains to the user query.<br>
 
 
