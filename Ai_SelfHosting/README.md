@@ -19,27 +19,27 @@ https://github.com/nathanMcL/Student.Originated.Software/wiki/Ai-Selfhosting<br>
 - Bonus if it pertains to the user query.<br>
 
 ## 06/20/2024 fun, while it lasted...
-So, i shot for the stars again.<br>
+So, I shot for the stars again.<br>
 
 - This GPT-xl, computationally is very large, and then once the program runs, the amount of hardware resources that are being utilized is alot, ahhhh...lot.<br>
 
 - The following are ruff, minimum harware consodertions for a `GPT2-xl`:
   ```
   GPT-2 XL (1.5B parameters)
-  :GPU: NVIDIA GPU with at least 24 GB of VRAM (e.g., RTX 3090, Titan RTX)
-  RAM: 128 GB of system RAMStorage:
-  SSD with at least 300 GB of free spaceCPU:
-  High-end multi-core CPU (e.g., Intel i9 or AMD Ryzen 9 Threadripper)
+  GPU: NVIDIA GPU with at least 24 GB of VRAM (e.g., RTX 3090, Titan RTX).
+  RAM: 128 GB of system RAMStorage.
+  SSD with at least 300 GB of free spaceCPU.
+  High-end multi-core CPU (e.g., Intel i9 or AMD Ryzen 9 Threadripper).
   CUDA and cuDNN: Installed and compatible with the GPU and PyTorch version
   ```
 - I need to scale back the size of the model I want to try and swap out.
 - I should attempt to test the `GPT-medium`, the minimum system requirements are more feasible for conducting training of that vesion. <br>
 
 ```
-. GPT-2 Medium (345M parameters)
-:GPU: NVIDIA GPU with at least 12-16 GB of VRAM (e.g., RTX 2080 Ti, RTX 3080)
-RAM: 32 GB of system RAMStorage:
-SSD with at least 100 GB of free spaceCPU: Modern multi-core CPU (e.g., Intel i7 or AMD Ryzen 7)
+GPT-2 Medium (345M parameters)
+GPU: NVIDIA GPU with at least 12-16 GB of VRAM (e.g., RTX 2080 Ti, RTX 3080).
+RAM: 32 GB of system RAMStorage.
+SSD with at least 100 GB of free spaceCPU. Modern multi-core CPU (e.g., Intel i7 or AMD Ryzen 7)
 CUDA and cuDNN: Installed and compatible with the GPU and PyTorch version
 ```
 
