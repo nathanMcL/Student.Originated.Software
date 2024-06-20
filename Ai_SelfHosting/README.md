@@ -23,7 +23,7 @@ So, I shot for the stars again.<br>
 
 - This GPT-xl, computationally is very large, and then once the program runs, the amount of hardware resources that are being utilized is alot, ahhhh...lot.<br>
 
-- The following are ruff, minimum harware consodertions for a `GPT2-xl`:
+- The following are ruff, minimum harware considertions for a `GPT2-xl` transformer:
   ```
   GPT-2 XL (1.5B parameters)
   GPU: NVIDIA GPU with at least 24 GB of VRAM (e.g., RTX 3090, Titan RTX).
