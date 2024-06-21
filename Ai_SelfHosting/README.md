@@ -23,6 +23,8 @@ So, I shot for the stars again.<br>
 
 - This GPT-xl, computationally is very large, and then once the program runs, the amount of hardware resources that are being utilized is alot, ahhhh...lot.<br>
 
+- After altering `gpt_train.py` so it uses the `GPT2-xl` version from Huggingface<br> (see `GPT2`)
+
 - The following are ruff, minimum harware considertions for a `GPT2-xl` transformer:
   ```
   GPT-2 XL (1.5B parameters)
