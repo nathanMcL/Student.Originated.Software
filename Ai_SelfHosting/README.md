@@ -114,6 +114,7 @@ GPT_CONFIG_124M = {
 ![Screenshot (4)](https://github.com/nathanMcL/Student.Originated.Software/assets/129904249/9cc91a49-b086-46b3-8d96-05eaf7509612)
 
 ### After adding additional resources
+![Screenshot (5)](https://github.com/nathanMcL/Student.Originated.Software/assets/129904249/943b4880-1fce-4b9d-9262-654753354a89)
 
 
 ## TODO:
