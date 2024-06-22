@@ -89,6 +89,33 @@ GPTSystemLogging.py will log the before metric, during metrics, but for the Even
 - So...add more data...
 - I did source The Food Service & Nutrition AR to add to my dataset...But I need more...
 
+### Before additional resources were added
+config:
+- accumulation_steps=4
+- num_workers=4
+```
+GPT_CONFIG_124M = {
+        "vocab_size": 50257,    # Vocabulary size
+        "context_length": 256,  # Shortened context length (orig: 1024)
+        "emb_dim": 768,         # Embedding dimension. Orignial value was: 768.
+        "n_heads": 12,          # Number of attention heads. Orignial value was: 12 
+        "n_layers": 12,         # Number of layers. Orignial value was: 12
+        "drop_rate": 0.1,       # Dropout rate. Original value was: 0.1
+        "qkv_bias": False       # Query-Key-Value bias
+    }
+
+    OTHER_SETTINGS = {
+        "learning_rate": 4e-4,  # Original value was: 5e-4,
+        "num_epochs": 20,       # Increase number of epochs from 10 to 20
+        "batch_size": 4,        # Increase the batch size or Decrease. Original value was: 2
+        "weight_decay": 0.1     # Original value was: 0.1
+    }
+```
+![Screenshot (4)](https://github.com/nathanMcL/Student.Originated.Software/assets/129904249/9cc91a49-b086-46b3-8d96-05eaf7509612)
+
+### After adding additional resources
+
+
 ## TODO:
 - Always Seek Improvements
 - practice creating unit tests
