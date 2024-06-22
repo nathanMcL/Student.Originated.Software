@@ -83,6 +83,11 @@ GPTSystemLogging.py will log the before metric, during metrics, but for the Even
 - I hope.lol, the program has not completed running as I type this. :)
 ![Screenshot (3)](https://github.com/nathanMcL/Student.Originated.Software/assets/129904249/c81ecaa9-12af-4ba7-a50c-60863946f1ec)
 
+### 0855 Feed the Machine!
+- After searching things up, I learned that not having a large diverse enough data set could have a factor in the `Validation Loss`'s overfitting that leads to over `Generalization`.
+- This has a factor in why there is a rise in the `Validation Loss`.
+- So...add more data...
+- I did source The Food Service & Nutrition AR to add to my dataset...But I need more...
 
 ## TODO:
 - Always Seek Improvements
