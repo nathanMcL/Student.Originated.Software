@@ -78,7 +78,7 @@ I had the idea to create another Python script. This GPTSystemLogging.py script 
 - The `GPU Memory (MB)` is a snapshot of the GPU's Memory.
 - The `Temperature` is logged to track the device's physical health
 
-GPTSystemLogging.py will log the before metric, during metrics, but for the Event `After` Training, the script computes the average Available RAM (GB), the average Available Memory (%), The average GPU Memory, and average Temperature.<br>
+GPTSystemLogging.py will log the before metric, during metrics, but for the Event `After` Training, the script computes the average usage before and after, Available RAM (GB), the average Available Memory (%), The average GPU Memory, and average Temperature.<br>
 
 - I hope.lol, the program has not completed running as I type this. :)
 ![Screenshot (3)](https://github.com/nathanMcL/Student.Originated.Software/assets/129904249/c81ecaa9-12af-4ba7-a50c-60863946f1ec)
@@ -86,7 +86,7 @@ GPTSystemLogging.py will log the before metric, during metrics, but for the Even
 
 ## TODO:
 - Always Seek Improvements
-
+- practice creating unit tests
 
 ### Resources
 
