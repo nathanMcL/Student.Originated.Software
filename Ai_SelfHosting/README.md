@@ -21,7 +21,7 @@ https://github.com/nathanMcL/Student.Originated.Software/wiki/Ai-Selfhosting<br>
 ## 06/20/2024 fun, while it lasted...
 So, I shot for the stars again.<br>
 
-- This GPT-xl, computationally is very large, and then once the program runs, the amount of hardware resources that are being utilized is alot, ahhhh...lot.<br>
+- This GPT2-xl, computationally is very large, and then once the program runs, the amount of hardware resources that are being utilized is alot, ahhhh...lot.<br>
 
 - After altering locally, `gpt_train.py`, so it uses the `GPT2-xl` version from Huggingface<br> (see `GPT2_xl` within the Project_LLM directory).
 
@@ -35,7 +35,7 @@ So, I shot for the stars again.<br>
   CUDA and cuDNN: Installed and compatible with the GPU and PyTorch version
   ```
 - I need to scale back the size of the model I want to try and swap out.
-- I should attempt to test the `GPT-medium`, the minimum system requirements are more feasible for conducting training of that vesion. <br>
+- I should attempt to test the `GPT2-medium`, the minimum system requirements are more feasible for conducting training of that vesion. <br>
 
 ```
 GPT-2 Medium (345M parameters)
@@ -45,7 +45,7 @@ SSD with at least 100 GB of free spaceCPU. Modern multi-core CPU (e.g., Intel i7
 CUDA and cuDNN: Installed and compatible with the GPU and PyTorch version
 ```
 ## 06/22/2024 Happy Compromises...
- - So, as I mentioned previously, the GPT2-XL requires a machine that can run the much larger GPT2-XL version. I did still gut `gpt_train.py` and implement the needed code for the GPT_XL to run, named 'GPT2_xl'. <br>
+ - So, as I mentioned previously, the GPT2-XL requires a machine that can run the much larger GPT2-XL version. I did still gut `gpt_train.py` and implement the needed code for the GPT2_XL to run, named 'GPT2_xl'. <br>
 
 - I created a new directory, named: `GPT_small` \ `GPT_final_small` that I copied over the necessary files from `GPT_final_two` directory.<br>
 
@@ -92,7 +92,7 @@ GPTSystemLogging.py will log the before metric, during metrics, but for the Even
 ### Before additional resources were added
 config:
 - accumulation_steps=4
-- num_workers=4
+- num_workers=4+4+4 (Four works at each location)
 ```
 GPT_CONFIG_124M = {
         "vocab_size": 50257,    # Vocabulary size
@@ -153,7 +153,7 @@ def get_system_stats(self):
 
 ## TODO:
 - Always Seek Improvements
-- practice creating unit tests
+- Practice creating unit tests
 
 ### Resources
 
