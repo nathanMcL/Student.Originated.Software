@@ -87,7 +87,7 @@ GPTSystemLogging.py will log the before metric, during metrics, but for the Even
 - After searching things up, I learned that not having a large diverse enough data set could have a factor in the `Validation Loss`'s overfitting that leads to over `Generalization`.
 - This has a factor in why there is a rise in the `Validation Loss`.
 - So...add more data...
-- I did source The Food Service & Nutrition AR to add to my dataset...But I need more...
+- I did source the U.S. Army: Food Service, Nutrition, & First-Aid manuals to add to my dataset...But I need more...
 
 ### Before additional resources were added
 config:
@@ -115,6 +115,40 @@ GPT_CONFIG_124M = {
 
 ### After adding additional resources
 ![Screenshot (5)](https://github.com/nathanMcL/Student.Originated.Software/assets/129904249/943b4880-1fce-4b9d-9262-654753354a89)
+
+## 06/23/2024 Python Library errors 😔
+
+So... ... How do I explain the problem...
+- When creating the `GPTSystemLogging.py` to log the operating system metrics: `Before`, `During`, & `After`.<br>
+I had to install / import `GPUtil`, But...<br>
+Today I received an error message when I attempted to run the program. I had not received any previous traceback messages regarding any issue with logging the GPU data.<br>
+
+`ValueError: invalid literal for int() with base 10: Failed to initialize NVML: N/A`<br>
+What I think this means, is that the library that handles or logs my GPU Nvidia data, now has some issue preventing it from being used to log my GPU data as it had previously.<br>
+- So far, I created an `Exception` for the `get_system_stats` method that will log " N/A " if the `import GPUtil` is not functioning as it should.
+
+```
+def get_system_stats(self):
+        mem = psutil.virtual_memory()
+        try:
+            gpus = GPUtil.getGPUs()
+            gpu_info = gpus[0] if gpus else None
+            gpu_name = gpu_info.name if gpu_info else "N/A"
+            gpu_memory = gpu_info.memoryFree if gpu_info else "N/A"
+            gpu_temp_c = gpu_info.temperature if gpu_info else "N/A"
+            gpu_temp_f = (gpu_temp_c * 9/5) + 32 if gpu_temp_c != "N/A" else "N/A"
+            if gpu_temp_c != "N/A":
+                self.temperature_celsius.append(gpu_temp_c)
+        except Exception as e:
+            gpu_name = "N/A"
+            gpu_memory = "N/A"
+            gpu_temp_c = "N/A"
+            gpu_temp_f = "N/A"
+```
+  
+
+- The `GPTSystemLogging.py` script has previously logged the GPU data, so I am not sure what happened at the moment.
+![Screenshot (6)](https://github.com/nathanMcL/Student.Originated.Software/assets/129904249/f3272439-393b-4cae-a8af-19a43c5c92f1)
 
 
 ## TODO:
