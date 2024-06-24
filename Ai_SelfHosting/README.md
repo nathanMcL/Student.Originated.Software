@@ -150,6 +150,12 @@ def get_system_stats(self):
 - The `GPTSystemLogging.py` script has previously logged the GPU data, so I am not sure what happened at the moment.
 ![Screenshot (6)](https://github.com/nathanMcL/Student.Originated.Software/assets/129904249/f3272439-393b-4cae-a8af-19a43c5c92f1)
 
+### Troubleshoot
+- 06/24/2024 Did a `sudo apt update && sudo apt upgrade`, hoping it would resolve the issue of not logging the GPU data.
+- installed the `cuda toolkit` library
+
+
+  
 
 ## TODO:
 - Always Seek Improvements
