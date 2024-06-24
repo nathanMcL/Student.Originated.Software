@@ -70,7 +70,7 @@ I had the idea to create another Python script. This GPTSystemLogging.py script 
 
 - The Event, Name, Date & Time, Available RAM (GB), Available Memory %, The GPU name, GPU Memory (MB), and Temperature in Celsius and Fahrenheit (C / F).
 - The `Event` will tell what type of training event it was (`Before`, `During` & `After`).
-- The `Name` is of the Device. TODO: currently the name is not the correct device name, investigate...
+- The `Name` is of the Device. 
 - The `Date & Time` is logged for each event entry.
 - The `Available RAM (GB)` is a snapshot of its state during the logging process.
 - The `Available Memory (%)` is a snapshot of the current memory percentage.
@@ -150,9 +150,10 @@ def get_system_stats(self):
 - The `GPTSystemLogging.py` script has previously logged the GPU data, so I am not sure what happened at the moment.
 ![Screenshot (6)](https://github.com/nathanMcL/Student.Originated.Software/assets/129904249/f3272439-393b-4cae-a8af-19a43c5c92f1)
 
-### Troubleshoot
-- 06/24/2024 Did a `sudo apt update && sudo apt upgrade`, hoping it would resolve the issue of not logging the GPU data.
+### 06/24/2024 Troubleshoot powpow
+- Did a `sudo apt update && sudo apt upgrade`, hoping it would resolve the issue of not logging the GPU data.
 - installed the `cuda toolkit` library
+
 
 
   
