@@ -163,7 +163,7 @@ def get_system_stats(self):
 
 config:<br>
 > - `accumulation_steps=4`<br>
-> - `num_workers`=4+4+4 (Four works at each location)<br>
+> - `num_workers`=4+4+4 (Four workers at each location)<br>
 
 ```
 GPT_CONFIG_124M = {
