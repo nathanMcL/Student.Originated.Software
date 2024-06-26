@@ -153,8 +153,40 @@ def get_system_stats(self):
 ### 06/24/2024 Troubleshoot powpow
 - Did a `sudo apt update && sudo apt upgrade`, hoping it would resolve the issue of not logging the GPU data.
 - installed the `cuda toolkit` library
+- try uninstalling the dependancies and re-install(I don't like this option).
 
+## 06/26/2024 Eight Batches!
 
+- Still investigating the issue of not being able to log the GPU data.
+
+### Learning to fine-tune
+
+config:<br>
+> - `accumulation_steps=4`<br>
+> - `num_workers`=4+4+4 (Four works at each location)<br>
+
+```
+GPT_CONFIG_124M = {
+        "vocab_size": 50257,    # Vocabulary size
+        "context_length": 256,  # Shortened context length (orig: 1024)
+        "emb_dim": 768,         # Embedding dimension. Orignial value was: 768. Test the value: 1024.
+        "n_heads": 12,          # Number of attention heads. Orignial value was: 12. Test the value: 16.
+        "n_layers": 12,         # Number of layers. Orignial value was: 12. Test the value: 24.
+        "drop_rate": 0.3,       # Dropout rate. Original value was: 0.1. lower value for larger datasets, higher value for smaller datasets.
+        "qkv_bias": False       # Query-Key-Value bias
+    }
+
+    OTHER_SETTINGS = {
+        "learning_rate": 3e-4,  # Original value was: 5e-4,
+        "num_epochs": 25,       # Increase number of epochs from 10 to 20
+        "batch_size": 8,        # Increase the batch size or Decrease. Original value was: 2
+        "weight_decay": 0.05     # Original value was: 0.1
+    }
+```
+gpt training loss<br>
+![Screenshot (7)](https://github.com/nathanMcL/Student.Originated.Software/assets/129904249/cacd77a8-0231-4371-8bb6-24840ff49676)
+GPT OS system log<br> 
+![Screenshot (8)](https://github.com/nathanMcL/Student.Originated.Software/assets/129904249/2bccc4fd-a5b7-4bae-8281-02a7e93b92c8)
 
   
 
