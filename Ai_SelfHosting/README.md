@@ -154,6 +154,9 @@ def get_system_stats(self):
 - Did a `sudo apt update && sudo apt upgrade`, hoping it would resolve the issue of not logging the GPU data.
 - installed the `cuda toolkit` library
 - try uninstalling the dependancies and re-install(I don't like this option).
+- read on-line, that `GPTil` may need to be using WSL2 kernal...
+> I downloaded WSL2 files, set the WSL2 to be used though the admin-terminal.<br>
+> I hve not proceeded, the instructions on how to switch from using WSL to WSL2 are challenging to sort out ATM.<br>
 
 ## 06/26/2024 Eight Batches!
 
