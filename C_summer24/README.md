@@ -6,7 +6,7 @@ zybooks<br>
 
 ### Chpt 1 
 - Whitespace
-- Erros & Warnings
+- Errors & Warnings
 
 ```
 0000000  0    0  !
