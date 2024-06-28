@@ -207,7 +207,9 @@ def main(gpt_config, settings):
             r"/mnt/d/myPython/SpringStudentOriginatedSoftware/AI_SelfHosting/Prototype_LLM/resources/DrillandCer_ARN32297-TC_3-21.5-000-WEB-1.pdf",
             r"/mnt/d/myPython/SpringStudentOriginatedSoftware/AI_SelfHosting/Prototype_LLM/resources/PhysFitARN30964-FM_7-22-001-WEB-4.pdf",
             r"/mnt/d/myPython/SpringStudentOriginatedSoftware/AI_SelfHosting/Prototype_LLM/resources/FoodServ_ARN7458_R30_22_FINAL.pdf",
-            r"/mnt/d/myPython/SpringStudentOriginatedSoftware/AI_SelfHosting/Prototype_LLM/resources/Nutrition_AR40-25_WEB_Final.pdf"
+            r"/mnt/d/myPython/SpringStudentOriginatedSoftware/AI_SelfHosting/Prototype_LLM/resources/Nutrition_AR40-25_WEB_Final.pdf",
+            r"/mnt/d/myPython/SpringStudentOriginatedSoftware/AI_SelfHosting/Prototype_LLM/resources/FirstAid_FM4-25.11.pdf",
+            r"/mnt/d/myPython/SpringStudentOriginatedSoftware/AI_SelfHosting/Prototype_LLM/resources/fm4_40_QUARTERMASTER OPERATIONS.pdf"
         ]
 
         raw_text = load_data_parallel(resource_files)
@@ -262,7 +264,7 @@ def main(gpt_config, settings):
         train_losses, val_losses, tokens_seen, model = train_model_simple(
             model, train_loader, val_loader, optimizer, device,
             num_epochs=settings["num_epochs"], eval_freq=5, eval_iter=1,
-            start_context="What are the main principles outlined in Sun Tzu's 'Art of War' regarding strategy?", tokenizer=tokenizer,
+            start_context="Outline the leadership principles detailed in the Army Leadership Field Manual.", tokenizer=tokenizer,
             logger=logger, resource=resource_name, accumulation_steps=4, system_logger=system_logger  # Accumulation_steps Original value was: 2
         )
 
@@ -285,18 +287,18 @@ if __name__ == "__main__":
     GPT_CONFIG_124M = {
         "vocab_size": 50257,    # Vocabulary size
         "context_length": 256,  # Shortened context length (orig: 1024)
-        "emb_dim": 768,         # Embedding dimension. Orignial value was: 768. Test the value: 1024.
-        "n_heads": 12,          # Number of attention heads. Orignial value was: 12. Test the value: 16.
-        "n_layers": 12,         # Number of layers. Orignial value was: 12. Test the value: 16.
-        "drop_rate": 0.1,       # Dropout rate. Original value was: 0.1
+        "emb_dim": 1024,         # Embedding dimension. Orignial value was: 768. Test the value: 1024.
+        "n_heads": 16,          # Number of attention heads. Orignial value was: 12. Test the value: 16.
+        "n_layers": 24,         # Number of layers. Orignial value was: 12. Test the value: 24.
+        "drop_rate": 0.3,       # Dropout rate. Original value was: 0.1. lower value for larger datasets, higher value for smaller datasets.
         "qkv_bias": False       # Query-Key-Value bias
     }
 
     OTHER_SETTINGS = {
-        "learning_rate": 4e-4,  # Original value was: 5e-4,
-        "num_epochs": 20,       # Increase number of epochs from 10 to 20
+        "learning_rate": 3e-4,  # Original value was: 5e-4,
+        "num_epochs": 10,       # Increase number of epochs from 10 to 20
         "batch_size": 4,        # Increase the batch size or Decrease. Original value was: 2
-        "weight_decay": 0.1     # Original value was: 0.1
+        "weight_decay": 0.05     # Original value was: 0.1
     }
 
 
