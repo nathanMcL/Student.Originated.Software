@@ -191,7 +191,10 @@ gpt training loss<br>
 GPT OS system log<br> 
 ![Screenshot (8)](https://github.com/nathanMcL/Student.Originated.Software/assets/129904249/2bccc4fd-a5b7-4bae-8281-02a7e93b92c8)
 
-  
+## 06/28/2024 WorkStations
+- An example of top-shelf Workstations for AI/ML training...
+  ![Screenshot (11)](https://github.com/nathanMcL/Student.Originated.Software/assets/129904249/41fea69b-3239-4df0-8999-8963b2c06f2a)
+
 
 ## TODO:
 - Always Seek Improvements
