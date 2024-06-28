@@ -47,10 +47,10 @@ I like this phrase, It helps me conceptulize what the compiler is doing when an 
 
 ## 06/28/2024 C++
 - To create a new C file in VS code...
-> new file
-> test.cpp
+> new file<br>
+> test.cpp<br>
 - To run the new C file in VS code...
-> cd C_Summer2024/
-> gcc -o test test.cpp
-> ./test
+> cd C_Summer2024/<br>
+> gcc -o test test.cpp<br>
+> ./test<br>
 
