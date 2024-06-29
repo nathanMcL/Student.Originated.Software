@@ -191,6 +191,11 @@ gpt training loss<br>
 GPT OS system log<br> 
 ![Screenshot (8)](https://github.com/nathanMcL/Student.Originated.Software/assets/129904249/2bccc4fd-a5b7-4bae-8281-02a7e93b92c8)
 
+### 8-batches...
+- The choice of using 8-batches during training appears to be a critical factor influencing the generalization capabilities of the small GPT-2 model.<br>
+- When training with this setting, the validation loss is noticeably reduced, indicating that the model is better at predicting unseen data. This reduction in validation loss demonstrates improved generalization, which means the model is not just memorizing the training data but is also learning patterns that apply to new data.<br>
+- Training with 8-batches helps achieve lower overall loss, making the model more effective and reliable.<br>
+
 ## 06/28/2024 WorkStations
 - An example of top-shelf Workstations for AI/ML training...
   ![Screenshot (11)](https://github.com/nathanMcL/Student.Originated.Software/assets/129904249/41fea69b-3239-4df0-8999-8963b2c06f2a)
