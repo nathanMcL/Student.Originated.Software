@@ -95,6 +95,10 @@ int main(void) {
 
 - Logical AND, OR and NOT
 ![Screenshot (14)](https://github.com/nathanMcL/Student.Originated.Software/assets/129904249/a285e9d3-d210-4a37-b4a7-125ba2dbe868)
-
   
+
+Logical Operator	Description<br>
+- a AND b	Logical AND = true when both of its operands are true.
+- a OR b	Logical OR = true when at least one of its two operands are true.
+- NOT a	Logical NOT = true when its one operand is false, and vice-versa.
 
