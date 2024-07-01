@@ -102,3 +102,43 @@ Logical Operator	Description<br>
 - a OR b	Logical OR = true when at least one of its two operands are true.
 - NOT a	Logical NOT = true when its one operand is false, and vice-versa.
 
+### 07/01/2024 1330, if / else desconstructed
+ `if () {} {} {} {} {}`
+ 
+```
+if () {
+         
+   } else if () {
+         
+   } else if () {
+         
+   } else {
+         
+   }
+```
+
+```
+if () {
+      printf("");  
+   } else if (""); {
+      printf("");   
+   } else if (""); {
+      printf("");   
+   } else {
+      printf("");   
+   }
+```
+
+```
+if (letSay >= 1 && letsSay <= 20000) {
+      printf("between 1 and lets say 20000k\n");  
+   } else if (letsSay >= 20000 && letsSay <=30000); {
+      printf("Oh! That's more than lets say 20k, but less than 30k\n");   
+   } else if (letsSay >= 30000 && letsSay <= 45000); {
+      printf("Lets say  30k is less 45k\n");   
+   } else {
+      printf("Lets say Invalid something\n");   
+   }
+```
+
+
