@@ -92,3 +92,9 @@ int main(void) {
 
   ![Screenshot (13)](https://github.com/nathanMcL/Student.Originated.Software/assets/129904249/489be698-6207-407d-8938-e2876674ace9)
 
+
+- Logical AND, OR and NOT
+![Screenshot (14)](https://github.com/nathanMcL/Student.Originated.Software/assets/129904249/a285e9d3-d210-4a37-b4a7-125ba2dbe868)
+
+  
+
