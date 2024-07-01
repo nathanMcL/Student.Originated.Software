@@ -85,3 +85,10 @@ int main(void) {
 }
 
 ```
+
+## 07/01/2024
+
+- Implementing a range:
+
+  ![Screenshot (13)](https://github.com/nathanMcL/Student.Originated.Software/assets/129904249/489be698-6207-407d-8938-e2876674ace9)
+
