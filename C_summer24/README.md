@@ -102,7 +102,7 @@ Logical Operator	Description<br>
 - a OR b	Logical OR = true when at least one of its two operands are true.
 - NOT a	Logical NOT = true when its one operand is false, and vice-versa.
 
-### 07/01/2024 1330, if / else desconstructed
+### 07/01/2024 1330, if / else deconstructed
  `if () {} {} {} {} {}`
  
 ```
