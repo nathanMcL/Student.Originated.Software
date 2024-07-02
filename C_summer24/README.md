@@ -141,4 +141,11 @@ if (letSay >= 1 && letsSay <= 20000) {
    }
 ```
 
+## 07/02/2024 
 
+```
+Logical operator	Description
+a && b	Logical AND (&&) = true when both of its operands are true
+a || b	Logical OR (||) = true when at least one of its two operands are true
+!a	Logical NOT (!) = true when its one operand is false, and vice-versa.
+```
