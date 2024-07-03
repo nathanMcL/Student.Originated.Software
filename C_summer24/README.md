@@ -164,7 +164,7 @@ for (initialExpression; conditionExpression; updateExpression) {
 - conditionExpression...
   > The conditionExpression is evaluated before each iteration of the loop. If the condition is true, the `loop` body is executed, else false, the loop terminates.<br>
   > if `i < 10`, then the loop continues if `i` is less than 10...<br>
-  > if `arr[]i != -1`, then the loop continues as long as the element at the index `i` of array `arr` is `not equal` to -1.<br>
+  > if `arr[i] != -1`, then the loop continues as long as the element at the index `i` of array `arr` is `not equal` to -1.<br>
 
 - updateExpression...
   > The updateExpression is executed after each iteration of the loop body, and is used to update the initialExpression     variable.<br>
