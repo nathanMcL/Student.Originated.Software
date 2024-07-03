@@ -149,3 +149,25 @@ a && b	Logical AND (&&) = true when both of its operands are true
 a || b	Logical OR (||) = true when at least one of its two operands are true
 !a	Logical NOT (!) = true when its one operand is false, and vice-versa.
 ```
+## 07/03/2024 for loop deconstructed
+
+```
+for (initialExpression; conditionExpression; updateExpression) {
+   // Loop body
+}
+```
+
+- initialExpression...
+  > The initialExpression is executed at the beggining of the loop, and is used as a loop control variable <br>
+  > `int i = 0;` initialize the loop variable `i` to 0...
+
+- conditionExpression...
+  > The conditionExpression is evaluated before each iteration of the loop. If the condition is true, the `loop` body is executed, else false, the loop terminates.<br>
+  > if `i < 10`, then the loop continues if `i` is less than 10...<br>
+  > if `arr[]i != -1`, then the loop continues as long as the element at the index `i` of array `arr` is `not equal` to -1.<br>
+
+- updateExpression...
+> The updateExpression is executed after each iteration of the loop body, and is used to update the initialExpression variable.<br>
+> `i++` increases the initialExpresion value by 1...
+> `i += 2` increments the initialExpresion value by 2...
+> `i--` decreases the initialExpresion value by -1...
