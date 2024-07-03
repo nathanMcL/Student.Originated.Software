@@ -171,3 +171,13 @@ for (initialExpression; conditionExpression; updateExpression) {
   > `i++` increases the initialExpresion value by 1...
   > `i += 2` increments the initialExpresion value by 2...
   > `i--` decreases the initialExpresion value by -1...
+
+- An example of a `for` `loop`
+```
+for () {()}
+for (int i = 0; i < 10; i++) {()}
+for (int i = 0; i < 10; i++) { // i is initialized to 0, the loop runs while i is less than 10
+  printf("%d ", i); // The loop body, it could be anything else besides a print statement.
+}
+printf("\n");
+```
