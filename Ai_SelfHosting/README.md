@@ -201,8 +201,46 @@ GPT OS system log<br>
   ![Screenshot (11)](https://github.com/nathanMcL/Student.Originated.Software/assets/129904249/41fea69b-3239-4df0-8999-8963b2c06f2a)
 
 ## 07/05/2024 Early Stopping...
-What...
-why...
+### EarlyStopping.py
+
+- What... is `Early Stopping`?<br>
+
+> - `Early Stopping` is a technique, implemented that is triggered once the `validation loss` has risen or has not improved over a set `epoch` duration determined by the `patience`.<br>
+
+> - If `EarlyStopping` is triggered,  due to the `validation loss` not improving, training is stopped early to prevent overfitting and save computational resources.<br> 
+
+- This implementation of Early Stopping includes:
+
+> - Saving the model with the lowest validation loss for potential future use...<br>
+> - Logging of the `validation loss` and the conditions under which early stopping was triggered.<br>
+
+
+- Why... should I implement Early Stopping??<br>
+
+> - So far from what I understand is that... Using this technique, once saved (at the final epoch), the instances where `EarlyStopping` was not triggered are saved as the `model.pth`.
+
+### but... why though??
+
+- Time:
+
+> - Reduced Training Time: By stopping the training process when the model stops improving, you can avoid unnecessary epochs.<br>
+
+- Computing Power:
+
+> - CPU/GPU Utilization: Training deep learning models can be resource-intensive, often requiring significant CPU and GPU usage. By halting training early, you free up these resources sooner.<br>
+
+> - Energy Consumption: With less computing power being used over time, there is also a reduction in energy consumption, which can be significant for large models and long training periods.<br>
+
+- Memory Usage:
+
+> - Reduced Memory Load: Training a deep learning model involves maintaining data in memory, including training data, model parameters, and gradient information. Early stopping reduces the duration these resources need to be allocated.<br> 
+
+- Storage:
+
+> - By creating `checkpoint.pth`, saving only the best-performing model during training, I can attempt to avoid storing unnecessary intermediate models, this can save disk space...<br>
+
+![Screenshot (15)](https://github.com/nathanMcL/Student.Originated.Software/assets/129904249/9d90dd98-4cba-4249-925f-7108cdfc2a85)
+
 
 ## TODO:
 - Always Seek Improvements
