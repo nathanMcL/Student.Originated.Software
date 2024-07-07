@@ -1,119 +1,285 @@
-import csv
-import os
-import psutil  # type: ignore
-import GPUtil  # type: ignore
-import time
-import platform
-from datetime import datetime
+import tiktoken  # type: ignore
+import torch  
+import torch.nn as nn  # type: ignore
+from torch.utils.data import Dataset, DataLoader # type: ignore
+from joblib import Memory # type: ignore
 
-class GPTSystemLogger:
-    def __init__(self, filename="GPT_OS_system_log.csv", process_name="gpt_train.py"):
-        self.filename = filename
-        self.fieldnames = ["Event", "Name", "Date & Time", "Available RAM (GB)", "Available Memory (%)", "CPU Usage (%)", "Process Memory (MB)", "Process CPU Usage (%)", "GPU Name", "GPU Memory (MB)", "Temperature (C / F)"]
-        self.init_csv()
-        self.temperature_celsius = []
-        self.process = self.find_process_by_name(process_name)
-        self.cpu_name = self.get_cpu_name()
+# Set up caching
+memory = Memory("cache_dir", verbose=0)
 
-    def init_csv(self):
-        if not os.path.isfile(self.filename):
-            with open(self.filename, mode='w', newline='') as file:
-                writer = csv.DictWriter(file, fieldnames=self.fieldnames)
-                writer.writeheader()
+#####################################
+# Chapter 2
+#####################################
 
-    def find_process_by_name(self, name):
-        """Return a process matching 'name' or None if no matching process is found."""
-        for proc in psutil.process_iter(['pid', 'name']):
-            if proc.info['name'] == name:
-                return psutil.Process(proc.info['pid'])
-        return None
 
-    def get_cpu_name(self):
-        """Get the detailed CPU name."""
-        try:
-            cpu_info = platform.uname().processor
-            if not cpu_info:
-                cpu_info = platform.uname().machine
-            return cpu_info
-        except Exception:
-            return "N/A"
+class GPTDatasetV1(Dataset):
+    def __init__(self, txt, tokenizer, max_length, stride):
+        self.input_ids, self.target_ids = self.process_chunks(txt, tokenizer, max_length, stride)
+        
+    @staticmethod
+    @memory.cache  # Cashe the results of the this method
+    def process_chunks(txt, tokenizer, max_length, stride):
+        input_ids = []
+        target_ids = []
 
-    def log_system_stats(self, event):
-        stats = self.get_system_stats()
-        stats["Event"] = event
-        self.write_to_csv(stats)
+        # Tokenize the entire text
+        token_ids = tokenizer.encode(txt)
+        
+        # Use a sliding window to chunk the text into overlapping sequences of max_length
+        for i in range(0, len(token_ids) - max_length, stride):
+            input_chunk = token_ids[i:i + max_length]
+            target_chunk = token_ids[i + 1:i + max_length + 1]
+            input_ids.append(torch.tensor(input_chunk))
+            target_ids.append(torch.tensor(target_chunk))
+        return input_ids, target_ids
 
-    def get_system_stats(self):
-        mem = psutil.virtual_memory()
-        cpu_usage = psutil.cpu_percent(interval=1)
-        proc_mem = "N/A"
-        proc_cpu = "N/A"
-        if self.process:
-            try:
-                proc_mem = self.process.memory_info().rss / (1024 * 1024)  # Convert bytes to MB
-                proc_cpu = self.process.cpu_percent(interval=1)
-            except psutil.NoSuchProcess:
-                self.process = None  # Process ended
+    def __len__(self):
+        return len(self.input_ids)
 
-        try:
-            gpus = GPUtil.getGPUs()
-            gpu_info = gpus[0] if gpus else None
-            gpu_name = gpu_info.name if gpu_info else "N/A"
-            gpu_memory = gpu_info.memoryFree if gpu_info else "N/A"
-            gpu_temp_c = gpu_info.temperature if gpu_info else "N/A"
-            gpu_temp_f = (gpu_temp_c * 9/5) + 32 if gpu_temp_c != "N/A" else "N/A"
-            if gpu_temp_c != "N/A":
-                self.temperature_celsius.append(gpu_temp_c)
-        except Exception as e:
-            gpu_name = "N/A"
-            gpu_memory = "N/A"
-            gpu_temp_c = "N/A"
-            gpu_temp_f = "N/A"
+    def __getitem__(self, idx):
+        return self.input_ids[idx], self.target_ids[idx]
 
-        stats = {
-            "Name": platform.node(),
-            "Date & Time": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-            "Available RAM (GB)": round(mem.available / (1024 ** 3), 2),
-            "Available Memory (%)": mem.percent,
-            "CPU Usage (%)": cpu_usage,
-            "Process Memory (MB)": proc_mem,
-            "Process CPU Usage (%)": proc_cpu,
-            "GPU Name": gpu_name,
-            "GPU Memory (MB)": gpu_memory,
-            "Temperature (C / F)": f"{gpu_temp_c} / {gpu_temp_f}"
-        }
-        return stats
 
-    def write_to_csv(self, stats):
-        with open(self.filename, mode='a', newline='') as file:
-            writer = csv.DictWriter(file, fieldnames=self.fieldnames)
-            writer.writerow(stats)
+def create_dataloader_v1(txt, batch_size=4, max_length=256,
+                         stride=128, shuffle=True, drop_last=True, num_workers=6):  # Use multiple worker threads. Started with 2.
+    """
+    Create a DataLoader for the GPT dataset.
 
-    def log_before_training(self):
-        self.log_system_stats("Before Training")
+    Parameters:
+    - txt: The text data to load.
+    - batch_size: The number of samples per batch.
+    - max_length: The maximum length of each sequence.
+    - stride: The stride for the sliding window.
+    - shuffle: Whether to shuffle the data.
+    - drop_last: Whether to drop the last batch if it's incomplete.
+    - num_workers: The number of worker threads to use for loading data.
 
-    def log_during_training(self, epoch):
-        if epoch % 5 == 0:
-            self.log_system_stats(f"During Training (Epoch {epoch})")
+    Returns:
+    - DataLoader object for the dataset.
+    """
+    tokenizer = tiktoken.get_encoding("gpt2")
+    dataset = GPTDatasetV1(txt, tokenizer, max_length, stride)
+    dataloader = DataLoader(dataset, batch_size=batch_size, shuffle=shuffle, drop_last=drop_last, num_workers=num_workers)
+    return dataloader
 
-    def log_after_training(self):
-        avg_temp_c = sum(self.temperature_celsius) / len(self.temperature_celsius) if self.temperature_celsius else "N/A"
-        avg_temp_f = (avg_temp_c * 9/5) + 32 if avg_temp_c != "N/A" else "N/A"
-        stats = self.get_system_stats()
-        stats["Event"] = "After Training"
-        stats["Temperature (C / F)"] = f"{avg_temp_c} / {avg_temp_f}"
-        self.write_to_csv(stats)
-        self.write_blank_line()
 
-    def write_blank_line(self):
-        with open(self.filename, mode='a', newline='') as file:
-            file.write('\n')
+#####################################
+# Chapter 3
+#####################################
+class MultiHeadAttention(nn.Module):
+    def __init__(self, d_in, d_out, context_length, dropout, num_heads, qkv_bias=False):
+        super().__init__()
+        assert d_out % num_heads == 0, "d_out must be divisible by n_heads"
+
+        self.d_out = d_out
+        self.num_heads = num_heads
+        self.head_dim = d_out // num_heads  # Reduce the projection dim to match desired output dim
+
+        self.W_query = nn.Linear(d_in, d_out, bias=qkv_bias)
+        self.W_key = nn.Linear(d_in, d_out, bias=qkv_bias)
+        self.W_value = nn.Linear(d_in, d_out, bias=qkv_bias)
+        self.out_proj = nn.Linear(d_out, d_out)  # Linear layer to combine head outputs
+        self.dropout = nn.Dropout(dropout)
+        self.register_buffer('mask', torch.triu(torch.ones(context_length, context_length), diagonal=1))
+
+    def forward(self, x):
+        b, num_tokens, d_in = x.shape
+
+        keys = self.W_key(x)  # Shape: (b, num_tokens, d_out)
+        queries = self.W_query(x)
+        values = self.W_value(x)
+
+        # We implicitly split the matrix by adding a `num_heads` dimension
+        # Unroll last dim: (b, num_tokens, d_out) -> (b, num_tokens, num_heads, head_dim)
+        keys = keys.view(b, num_tokens, self.num_heads, self.head_dim)
+        values = values.view(b, num_tokens, self.num_heads, self.head_dim)
+        queries = queries.view(b, num_tokens, self.num_heads, self.head_dim)
+
+        # Transpose: (b, num_tokens, num_heads, head_dim) -> (b, num_heads, num_tokens, head_dim)
+        keys = keys.transpose(1, 2)
+        queries = queries.transpose(1, 2)
+        values = values.transpose(1, 2)
+
+        # Compute scaled dot-product attention (aka self-attention) with a causal mask
+        attn_scores = queries @ keys.transpose(2, 3)  # Dot product for each head
+
+        # Original mask truncated to the number of tokens and converted to boolean
+        mask_bool = self.mask.bool()[:num_tokens, :num_tokens]
+
+        # Use the mask to fill attention scores
+        attn_scores.masked_fill_(mask_bool, -torch.inf)
+
+        attn_weights = torch.softmax(attn_scores / keys.shape[-1]**0.5, dim=-1)
+        attn_weights = self.dropout(attn_weights)
+
+        # Shape: (b, num_tokens, num_heads, head_dim)
+        context_vec = (attn_weights @ values).transpose(1, 2)
+
+        # Combine heads, where self.d_out = self.num_heads * self.head_dim
+        context_vec = context_vec.reshape(b, num_tokens, self.d_out)
+        context_vec = self.out_proj(context_vec)  # optional projection
+
+        return context_vec
+
+
+#####################################
+# Chapter 4
+#####################################
+class LayerNorm(nn.Module):
+    def __init__(self, emb_dim):
+        super().__init__()
+        self.eps = 1e-5
+        self.scale = nn.Parameter(torch.ones(emb_dim))
+        self.shift = nn.Parameter(torch.zeros(emb_dim))
+
+    def forward(self, x):
+        mean = x.mean(dim=-1, keepdim=True)
+        var = x.var(dim=-1, keepdim=True, unbiased=False)
+        norm_x = (x - mean) / torch.sqrt(var + self.eps)
+        return self.scale * norm_x + self.shift
+
+
+class GELU(nn.Module):
+    def __init__(self):
+        super().__init__()
+
+    def forward(self, x):
+        return 0.5 * x * (1 + torch.tanh(
+            torch.sqrt(torch.tensor(2.0 / torch.pi)) *
+            (x + 0.044715 * torch.pow(x, 3))
+        ))
+
+
+class FeedForward(nn.Module):
+    def __init__(self, cfg):
+        super().__init__()
+        self.layers = nn.Sequential(
+            nn.Linear(cfg["emb_dim"], 4 * cfg["emb_dim"]),
+            GELU(),
+            nn.Linear(4 * cfg["emb_dim"], cfg["emb_dim"]),
+        )
+
+    def forward(self, x):
+        return self.layers(x)
+
+
+class TransformerBlock(nn.Module):
+    def __init__(self, cfg):
+        super().__init__()
+        self.att = MultiHeadAttention(
+            d_in=cfg["emb_dim"],
+            d_out=cfg["emb_dim"],
+            context_length=cfg["context_length"],
+            num_heads=cfg["n_heads"],
+            dropout=cfg["drop_rate"],
+            qkv_bias=cfg["qkv_bias"])
+        self.ff = FeedForward(cfg)
+        self.norm1 = LayerNorm(cfg["emb_dim"])
+        self.norm2 = LayerNorm(cfg["emb_dim"])
+        self.drop_shortcut = nn.Dropout(cfg["drop_rate"])
+
+    def forward(self, x):
+        # Shortcut connection for attention block
+        shortcut = x
+        x = self.norm1(x)
+        x = self.att(x)   # Shape [batch_size, num_tokens, emb_size]
+        x = self.drop_shortcut(x)
+        x = x + shortcut  # Add the original input back
+
+        # Shortcut connection for feed-forward block
+        shortcut = x
+        x = self.norm2(x)
+        x = self.ff(x)
+        x = self.drop_shortcut(x)
+        x = x + shortcut  # Add the original input back
+
+        return x
+
+
+class GPTModel(nn.Module):
+    def __init__(self, cfg):
+        super().__init__()
+        self.tok_emb = nn.Embedding(cfg["vocab_size"], cfg["emb_dim"])
+        self.pos_emb = nn.Embedding(cfg["context_length"], cfg["emb_dim"])
+        self.drop_emb = nn.Dropout(cfg["drop_rate"])
+
+        self.trf_blocks = nn.Sequential(
+            *[TransformerBlock(cfg) for _ in range(cfg["n_layers"])])
+
+        self.final_norm = LayerNorm(cfg["emb_dim"])
+        self.out_head = nn.Linear(cfg["emb_dim"], cfg["vocab_size"], bias=False)
+
+    def forward(self, in_idx):
+        batch_size, seq_len = in_idx.shape
+        tok_embeds = self.tok_emb(in_idx)
+        pos_embeds = self.pos_emb(torch.arange(seq_len, device=in_idx.device))
+        x = tok_embeds + pos_embeds  # Shape [batch_size, num_tokens, emb_size]
+        x = self.drop_emb(x)
+        x = self.trf_blocks(x)
+        x = self.final_norm(x)
+        logits = self.out_head(x)
+        return logits
+
+
+def generate_text_simple(model, idx, max_new_tokens, context_size):
+    # idx is (B, T) array of indices in the current context
+    for _ in range(max_new_tokens):
+
+        # Crop current context if it exceeds the supported context size
+        # E.g., if LLM supports only 5 tokens, and the context size is 10
+        # then only the last 5 tokens are used as context
+        idx_cond = idx[:, -context_size:]
+
+        # Get the predictions
+        with torch.no_grad():
+            logits = model(idx_cond)
+
+        # Focus only on the last time step
+        # (batch, n_token, vocab_size) becomes (batch, vocab_size)
+        logits = logits[:, -1, :]
+
+        # Get the idx of the vocab entry with the highest logits value
+        idx_next = torch.argmax(logits, dim=-1, keepdim=True)  # (batch, 1)
+
+        # Append sampled index to the running sequence
+        idx = torch.cat((idx, idx_next), dim=1)  # (batch, n_tokens+1)
+
+    return idx
+
 
 if __name__ == "__main__":
-    system_logger = GPTSystemLogger()
-    system_logger.log_before_training()
 
-    for epoch in range(1, 21):
-        time.sleep(1)
-        system_logger.log_during_training(epoch)
-    system_logger.log_after_training()
+    GPT_CONFIG_124M = {
+        "vocab_size": 50257,     # Vocabulary size
+        "context_length": 1024,  # Context length
+        "emb_dim": 768,          # Embedding dimension
+        "n_heads": 12,           # Number of attention heads
+        "n_layers": 12,          # Number of layers
+        "drop_rate": 0.1,        # Dropout rate
+        "qkv_bias": False        # Query-Key-Value bias
+    }
+
+    torch.manual_seed(123)
+    model = GPTModel(GPT_CONFIG_124M)
+    model.eval()  # disable dropout
+
+    start_context = "Hello, I am"
+
+    tokenizer = tiktoken.get_encoding("gpt2")
+    encoded = tokenizer.encode(start_context)
+    encoded_tensor = torch.tensor(encoded).unsqueeze(0)
+
+    out = generate_text_simple(
+        model=model,
+        idx=encoded_tensor,
+        max_new_tokens=10,
+        context_size=GPT_CONFIG_124M["context_length"]
+    )
+    decoded_text = tokenizer.decode(out.squeeze(0).tolist())
+
+    #print(decoded_text)
+
+    print(f"\n\n{50*'='}\n{22*' '}OUT\n{50*'='}")
+    print("\nOutput:", out)
+    print("Output length:", len(out[0]))
+    print("Output text:", decoded_text)

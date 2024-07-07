@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt # type: ignore
 import tiktoken # type: ignore
-import torch # type: ignore
-import torch.nn as nn # type: ignore
+import torch 
+import torch.nn as nn 
 import pdfplumber # type: ignore
 import os
 import logging  # Logging
@@ -11,7 +11,8 @@ from torch.optim.lr_scheduler import ReduceLROnPlateau # type: ignore
 
 from previous_chapters import GPTModel, create_dataloader_v1, generate_text_simple
 from GPTLogging import GPTLogging
-from GPTSystemLogging import GPTSystemLogger 
+from GPTSystemLogging import GPTSystemLogger
+from EarlyStopping import EarlyStopping 
 
 def text_to_token_ids(text, tokenizer):
     encoded = tokenizer.encode(text)
@@ -86,7 +87,8 @@ def generate_and_print_sample(model, tokenizer, device, start_context):
     return decoded_text.replace("\n", " ")  # Return the generated sentence
 
 def train_model_simple(model, train_loader, val_loader, optimizer, device, num_epochs,
-                       eval_freq, eval_iter, start_context, tokenizer, logger, resource, accumulation_steps=4, system_logger=None):  # accumulation_steps Original value was: 2.
+                       eval_freq, eval_iter, start_context, tokenizer, logger, resource,
+                       accumulation_steps=4, system_logger=None, early_stopping=None):  # accumulation_steps Original value was: 2.
     # Initialize lists to track losses and tokens seen
     train_losses, val_losses, track_tokens_seen = [], [], []
     tokens_seen = 0
@@ -129,6 +131,13 @@ def train_model_simple(model, train_loader, val_loader, optimizer, device, num_e
                 track_tokens_seen.append(tokens_seen)
                 print(f"Ep {epoch+1} (Step {global_step:06d}): "
                       f"Train loss {train_loss:.3f}, Val loss {val_loss:.3f}")
+                
+                # Early Stopping check
+                if early_stopping:
+                    early_stopping(val_loss, model)
+                    if early_stopping.early_stop:
+                        print("Early stopping")
+                        break 
 
         avg_train_loss = sum(epoch_train_loss) / len(epoch_train_loss)
         val_loss = sum(val_losses) / len(val_losses) if val_losses else float('nan')
@@ -138,6 +147,10 @@ def train_model_simple(model, train_loader, val_loader, optimizer, device, num_e
 
         # Step the scheduler based on the validation loss
         scheduler.step(val_loss)
+
+        if early_stopping and early_stopping.early_stop:
+            print(f"Early Stopping at epoch {epoch+1}")
+            break
 
     return train_losses, val_losses, track_tokens_seen, model
     
@@ -243,7 +256,7 @@ def main(gpt_config, settings):
             stride=gpt_config["context_length"],
             drop_last=True,
             shuffle=True,
-            num_workers=4  # Use multiple worker threads. Started with 4.
+            num_workers=6  # Use multiple worker threads. Started with 4.
         )
 
         val_loader = create_dataloader_v1(
@@ -253,7 +266,7 @@ def main(gpt_config, settings):
             stride=gpt_config["context_length"],
             drop_last=False,
             shuffle=False,
-            num_workers=4  # Use multiple worker threads. Started with 4.
+            num_workers=6  # Use multiple worker threads. Started with 4.
         )
 
         # Train model
@@ -261,11 +274,15 @@ def main(gpt_config, settings):
         logger = GPTLogging("training_log.csv", "chat_log.csv")
         logger.log_start_time()  # Log the start time
 
+        # Initialize early stopping
+        early_stopping = EarlyStopping(patience=300, verbose=True)
+
         train_losses, val_losses, tokens_seen, model = train_model_simple(
             model, train_loader, val_loader, optimizer, device,
             num_epochs=settings["num_epochs"], eval_freq=5, eval_iter=1,
-            start_context="Outline the leadership principles detailed in the Army Leadership Field Manual.", tokenizer=tokenizer,
-            logger=logger, resource=resource_name, accumulation_steps=4, system_logger=system_logger  # Accumulation_steps Original value was: 2
+            start_context="Explain the procedures for conducting a military ceremony as per the Drill and Ceremonies manual.", tokenizer=tokenizer,
+            logger=logger, resource=resource_name, accumulation_steps=4, system_logger=system_logger,  # Accumulation_steps Original value was: 2
+            early_stopping=early_stopping  # Pass early_stopping to the training function
         )
 
         system_logger.log_after_training()  # Log system stats after training
@@ -287,17 +304,17 @@ if __name__ == "__main__":
     GPT_CONFIG_124M = {
         "vocab_size": 50257,    # Vocabulary size
         "context_length": 256,  # Shortened context length (orig: 1024)
-        "emb_dim": 1024,         # Embedding dimension. Orignial value was: 768. Test the value: 1024.
-        "n_heads": 16,          # Number of attention heads. Orignial value was: 12. Test the value: 16.
-        "n_layers": 24,         # Number of layers. Orignial value was: 12. Test the value: 24.
+        "emb_dim": 768,         # Embedding dimension. Orignial value was: 768. Test the value: 1024.
+        "n_heads": 12,          # Number of attention heads. Orignial value was: 12. Test the value: 16.
+        "n_layers": 12,         # Number of layers. Orignial value was: 12. Test the value: 24.
         "drop_rate": 0.3,       # Dropout rate. Original value was: 0.1. lower value for larger datasets, higher value for smaller datasets.
         "qkv_bias": False       # Query-Key-Value bias
     }
 
     OTHER_SETTINGS = {
         "learning_rate": 3e-4,  # Original value was: 5e-4,
-        "num_epochs": 10,       # Increase number of epochs from 10 to 20
-        "batch_size": 4,        # Increase the batch size or Decrease. Original value was: 2
+        "num_epochs": 15,       # Increase number of epochs from 10 to 20
+        "batch_size": 8,        # Increase the batch size or Decrease. Original value was: 2
         "weight_decay": 0.05     # Original value was: 0.1
     }
 
