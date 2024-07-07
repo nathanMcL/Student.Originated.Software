@@ -120,9 +120,9 @@ if () {
 ```
 if () {
       printf("");  
-   } else if (""); {
+   } else if (); {
       printf("");   
-   } else if (""); {
+   } else if (); {
       printf("");   
    } else {
       printf("");   
