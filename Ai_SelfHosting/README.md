@@ -249,6 +249,7 @@ GPT OS system log<br>
 ### Resources
 
 - https://huggingface.co/openai-community/gpt2
+- https://huggingface.co/openai-community/gpt2-medium
 - https://huggingface.co/openai-community/gpt2-xl
 
 
