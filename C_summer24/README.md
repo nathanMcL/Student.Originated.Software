@@ -181,3 +181,33 @@ for (int i = 0; i < 10; i++) { // i is initialized to 0, the loop runs while i i
 }
 printf("\n");
 ```
+## 07/08/2024 Two-dimensional arrays...
+
+```
+// Initializing a 2D array
+int numVals[2][3] = { {22, 44, 66}, {97, 98, 99} };
+
+// Use multiple lines to make rows more visible
+int numVals[2][3] = {
+   {22, 44, 66}, // Row 0
+   {97, 98, 99}  // Row 1
+};
+```
+- `int numVals[2][3]`
+  > - Declares a two-dimensional array called: `numVals` with 2 rows [2] and 3 columns [3] <br>
+  > - `{22, 44, 66}`: Represents the values in the first row (row 0) <br>
+  > - `{97, 98, 99}`: Represents the values in the second row (row 1) <br>
+
+- Next you could `print` all the elements in the array...
+```
+for (int i = 0; i < 2; ++i) {  // Iterate over the rows
+  for (int j = 0; k < 3; ++j) {} // Then, iterate over the columns
+    std::cout << "numVals[" << i << "][" << j << "] = " << numVals[i][j] << std::end1;
+    }
+  }
+  return 0;
+}
+```
+
+
+  
