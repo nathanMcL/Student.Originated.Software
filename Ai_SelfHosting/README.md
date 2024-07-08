@@ -203,7 +203,7 @@ GPT OS system log<br>
 ## 07/05/2024 Early Stopping...
 ### EarlyStopping.py
 
-- What... is `Early Stopping`?<br>
+### What... is `Early Stopping`?<br>
 
 > - `Early Stopping` is a technique, implemented that is triggered once the `validation loss` has risen or has not improved over a set `epoch` duration determined by the `patience`.<br>
 
@@ -215,11 +215,11 @@ GPT OS system log<br>
 > - Logging of the `validation loss` and the conditions under which early stopping was triggered.<br>
 
 
-- Why... should I implement Early Stopping??<br>
+### Why... should I implement Early Stopping??<br>
 
-> - So far from what I understand is that... Using this technique, once saved (at the final epoch), the instances where `EarlyStopping` was not triggered are saved as the `model.pth`.
+> - So far from what I understand is that... Using this technique, once saved (at the final epoch), the instances where `EarlyStopping` was not triggered are saved as the `model.pth`... TBC...
 
-### but... why though??
+### But... why though???
 
 - Time:
 
