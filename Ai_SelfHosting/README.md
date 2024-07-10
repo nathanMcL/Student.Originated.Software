@@ -1,6 +1,6 @@
-I created a Wiki for:
+I created a Wiki DevDiary for:
 ```
-ProtoType 08, Prototype_text, GPT_final
+Ai_SelfHosting 
 ```
 https://github.com/nathanMcL/Student.Originated.Software/wiki/Ai-Selfhosting<br>
 
