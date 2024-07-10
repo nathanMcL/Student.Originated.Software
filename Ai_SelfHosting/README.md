@@ -2,6 +2,7 @@ I created a Wiki DevDiary for:
 ```
 Ai_SelfHosting 
 ```
+## Start Here...<br>
 https://github.com/nathanMcL/Student.Originated.Software/wiki/Ai-Selfhosting<br>
 
 ## 06/16/2024 The Swap...
