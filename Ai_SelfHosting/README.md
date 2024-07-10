@@ -45,7 +45,7 @@ SSD with at least 100 GB of free spaceCPU. Modern multi-core CPU (e.g., Intel i7
 CUDA and cuDNN: Installed and compatible with the GPU and PyTorch version
 ```
 ## 06/22/2024 Happy Compromises...
- - So, as I mentioned previously, the GPT2-XL requires a machine that can run the much larger GPT2-XL version. I did still gut `gpt_train.py` and implement the needed code for the GPT2_XL to run, named 'GPT2_xl'. <br>
+ - So, as I mentioned previously, the GPT2-XL requires a machine that can run the much larger GPT2-XL version. I did still gut `gpt_train.py`, and `previous_chapters.py` to implement the needed code for the GPT2_XL to run, named 'GPT2_xl'. <br>
 
 - I created a new directory, named: `GPT_small` \ `GPT_final_small` that I copied over the necessary files from `GPT_final_two` directory.<br>
 
