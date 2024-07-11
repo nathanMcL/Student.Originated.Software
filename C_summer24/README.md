@@ -209,5 +209,40 @@ for (int i = 0; i < 2; ++i) {  // Iterate over the rows
 }
 ```
 
+### 07/11/2024 Pass by Value vs. Pass by Pointer
 
+In C you can use pointers in two different ways...<br>
+
+- `Pass by Value` uses the modulus `%` ASCII symbol...<br>
+> When a variable is passed to a function by `value`, the original variable is not changed...<br>
+> A copy of the variable's value is made and passed to the function. This means that the functions work with a copy, not the original variable...<br>
+> Any changes made to the parameter inside the function do not affect the original variable in the calling function...<br>
+> Pass by Value ensures that the original data remains unchanged and isolated from modifications within the function...<br>
+
+```
+// Pass by Value uses the `%` symbol
+printf("\t\ta = %2d %p\n", a, &a);
+```
+
+
+- `Pass by Pointer` uses the  asterisk `*` ascii symbol...<br>
+> In a `Pass by Pointer` the address of the variable is 'passed' to a function...<br>
+> The function can then use the address to access and modify the actual variable.
   
+```
+// Pass by Pointer uses the `*` symbol
+printf("\t\ta = %2d %p\n", *a, a);
+
+```
+
+### Key Differences
+
+- `Pass by Value`: 
+> - Requires additional memory to store the copy of the variable.
+> - Safer as it prevents accidental modifications to the original value...
+> - `Pass by Value`: `Increment(a);` – The function receives a copy of `a`.
+
+- `Pass by Pointer`:
+> - Directly uses the memory address.
+> - Less safe as it allows direct modifications to the original variable, which can lead to unintended side effects.
+> - `Pass by Pointer`: `Increment(&a);` - The function receives the address of `a`.
