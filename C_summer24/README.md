@@ -43,6 +43,7 @@ y = 5
 I like this phrase, It helps me conceptulize what the compiler is doing when an error occurs.
 - The error may actually exist in an earlier line, but the compiler didn't get confused until reaching line 5.<br>
 
+### ...
 ![Screenshot (10)](https://github.com/nathanMcL/Student.Originated.Software/assets/129904249/9674fb07-eaf5-4a24-be4c-c3d87bd78c9d)
 
 ## 06/28/2024 C++
