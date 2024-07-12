@@ -31,6 +31,14 @@ CUDA and cuDNN: Installed and compatible with the GPU and PyTorch version
 tokenizer = tiktoken.get_encoding("gpt2-medium")
 ```
 
+### Swapping out & in
+- I am have been attempting to resolve the import dependencies one by one. Instead of chaining the import install commands togeather.
+- While swapping in the GPT2_medium, I am having to resolve a lot of yellow warnings within `gpt_train.py`, & `previous_chapters.py` code before I have the chance to run the program.
+- I do not think they are necessary to write about... I'm not sure if what I did resolved the issue until I run the program...
+- FYI, different Operating Systems and Coding interpreters might have different messages when attempting to swap out one code for another while attempting to use the framework of the previous model...
+
+- That all said... I need to ensure I post the notable changes that are needed to swap in the different models...
+
 
 ## TODO:
 - Always Seek Improvements
