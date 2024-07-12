@@ -80,6 +80,50 @@ Failed to properly shut down NVML: N/A
 ```
 - I am still trying to investigating the Failed NVML issues...
 
+
+### 07/12/2024 12:45PM Prepping `GPT2_medium`... Before ...
+
+- *Swapped in the GPT_medium*
+> - Resolved all my import dependancies...<br>
+> - Reconnected the main framework with the GPT2_medium...<br>
+> - Resolved additional warnings...<br>
+
+*Next Check Configuration Settings* <br>
+
+- `EarlyStopping.py` set the `patience=75`
+- `previous_chapters.py` set `num_workers=4` & `batch_size=4`
+- `gpt_train.py` set `train_loader`'s workers to `num_workers=4`, & `val_loader`'s workers to `num_workers=4`
+- `gpt_train.py` set `accumulation_steps=4`
+
+```
+GPT_CONFIG_MEDIUM = {
+        "vocab_size": 50257,    # Vocabulary size
+        "context_length": 1024,  # Context length. Orginal value was: 1024
+        "emb_dim": 1024,         # Embedding dimension for GPT-2 Medium. Original value was: 1024
+        "n_heads": 16,           # Number of attention heads for GPT-2 Medium. Original value was: 16
+        "n_layers": 24,          # Number of layers for GPT-2 Medium. Original value was: 24
+        "drop_rate": 0.3,       # Dropout rate. Original value was: 0.1
+        "qkv_bias": False       # Query-Key-Value bias
+    }
+
+    OTHER_SETTINGS = {
+        "learning_rate": 3e-4,  # Original value was: 5e-4,
+        "num_epochs": 10,       # Increase number of epochs from 10 to 20
+        "batch_size": 8,        # Increase the batch size or Decrease. Original value was: 2
+        "weight_decay": 0.05     # Original value was: 0.1
+    }
+
+```
+ 
+- attempt to run the program... ... but there might be errors 😭... lol... 🥹
+
+
+
+
+
+
+
+
   
 
 ## TODO:
