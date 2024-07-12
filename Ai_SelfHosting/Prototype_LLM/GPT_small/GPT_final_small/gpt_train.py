@@ -1,13 +1,15 @@
-import matplotlib.pyplot as plt # type: ignore
-import tiktoken # type: ignore
+# GPT small
+import matplotlib.pyplot as plt 
+import tiktoken 
 import torch 
 import torch.nn as nn 
-import pdfplumber # type: ignore
+import pdfplumber 
 import os
 import logging  # Logging
 import multiprocessing as mp  # Parallel Data Loading
 from datetime import datetime  # Import datetime for timestamping
-from torch.optim.lr_scheduler import ReduceLROnPlateau # type: ignore
+from torch.optim.lr_scheduler import ReduceLROnPlateau
+from torch.optim import lr_scheduler  # Import the lr_scheduler module from torch.optim
 
 from previous_chapters import GPTModel, create_dataloader_v1, generate_text_simple
 from GPTLogging import GPTLogging
@@ -242,6 +244,7 @@ def main(gpt_config, settings):
         optimizer = torch.optim.AdamW(
             model.parameters(), lr=settings["learning_rate"], weight_decay=settings["weight_decay"]
         )
+        
         scheduler = ReduceLROnPlateau(optimizer, mode='min', factor=0.1, patience=10) 
 
         # Set up dataloaders
@@ -275,12 +278,12 @@ def main(gpt_config, settings):
         logger.log_start_time()  # Log the start time
 
         # Initialize early stopping
-        early_stopping = EarlyStopping(patience=300, verbose=True)
+        early_stopping = EarlyStopping(patience=100, verbose=True)
 
         train_losses, val_losses, tokens_seen, model = train_model_simple(
             model, train_loader, val_loader, optimizer, device,
             num_epochs=settings["num_epochs"], eval_freq=5, eval_iter=1,
-            start_context="Explain the procedures for conducting a military ceremony as per the Drill and Ceremonies manual.", tokenizer=tokenizer,
+            start_context="Discuss the importance of hydration and electrolyte balance in military nutrition.", tokenizer=tokenizer,
             logger=logger, resource=resource_name, accumulation_steps=4, system_logger=system_logger,  # Accumulation_steps Original value was: 2
             early_stopping=early_stopping  # Pass early_stopping to the training function
         )
@@ -313,8 +316,8 @@ if __name__ == "__main__":
 
     OTHER_SETTINGS = {
         "learning_rate": 3e-4,  # Original value was: 5e-4,
-        "num_epochs": 15,       # Increase number of epochs from 10 to 20
-        "batch_size": 8,        # Increase the batch size or Decrease. Original value was: 2
+        "num_epochs": 20,       # Increase number of epochs from 10 to 20
+        "batch_size": 12,        # Increase the batch size or Decrease. Original value was: 2
         "weight_decay": 0.05     # Original value was: 0.1
     }
 
