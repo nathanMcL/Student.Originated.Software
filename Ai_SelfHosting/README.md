@@ -39,6 +39,48 @@ tokenizer = tiktoken.get_encoding("gpt2-medium")
 
 - That all said... I need to ensure I post the notable changes that are needed to swap in the different models...
 
+## 07/12/2024 Setting up Cuda
+*This should all the steps*
+- The following are the commands I used to install `Cuda`...
+
+- First, Remove any previous Cuda repositories
+```
+sudo rm /etc/apt/sources.list.d/cuda*
+```
+  
+- Add the cuda repo for Ubuntu 22.04 <br>
+```wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-ubuntu2204.pin && sudo mv cuda-ubuntu2204.pin /etc/apt/preferences.d/cuda-repository-pin-600 && ```
+
+```sudo apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/3bf863cc.pub && sudo add-apt-repository "deb https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/ /" ``` 
+
+- Update the package list and install Cuda
+```sudo apt-get update && sudo apt-get install -y nvidia-docker2 && sudo systemctl restart docker```
+
+- In Power Shell enter update to latest version: <br>
+```wsl --update``` <br>
+- Next, shutdown WSL <br>
+```wsl --shutdown wsl``` <br>
+- Then restart: <br>
+```wsl``` <br>
+
+- Back in the VS code, WSL, Ubuntu terminal verify that Cuda is installed correctly: <br>
+```nvidia-smi``` <br>
+
+- `Output` <br>
+
+```
+nvidia-smi
+nvcc: NVIDIA (R) Cuda compiler driver
+Copyright (c) 2005-2021 NVIDIA Corporation
+Built on Thu_Nov_18_09:45:30_PST_2021
+Cuda compilation tools, release 11.5, V11.5.119
+Build cuda_11.5.r11.5/compiler.30672275_0
+Failed to initialize NVML: N/A
+Failed to properly shut down NVML: N/A
+```
+- I am still trying to investigating the Failed NVML issues...
+
+  
 
 ## TODO:
 - Always Seek Improvements
