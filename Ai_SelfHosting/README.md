@@ -40,7 +40,8 @@ tokenizer = tiktoken.get_encoding("gpt2-medium")
 - That all said... I need to ensure I post the notable changes that are needed to swap in the different models...
 
 ## 07/12/2024 Setting up Cuda
-*This should be all the steps*
+*This should be all the steps* <br>
+starting in my Windows VScode, WSL, Ubuntu terminal...<br>
 - The following are the commands I used to install `Cuda`...
 
 - First, Remove any previous Cuda repositories
