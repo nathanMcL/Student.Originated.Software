@@ -252,8 +252,9 @@ printf("\t\ta = %2d %p\n", *a, a);
 ## 07/14/2024 Malloc()...
 
 ### What is `malloc()`
-- `malloc()` / "Memory Allocation" is used to dynamically allocate a block of memory on the heap. 
+- `malloc()` / "Memory Allocation" is used to dynamically allocate a specific block of memory on the heap. 
 > - `Dynamically allocate` means the process of allocating memory during the runtime of the program, as opposed to static memory allocation, which occurs at compile time. <br>
+> - Use when you need to allocate memory without initialization. <br> 
  
 
 ```
@@ -288,4 +289,8 @@ Int main() {
 }
 
 ```
+## ... and the others...
+- `calloc`: Allocates memory for an array of elements, initializes all bytes to zero, and returns a pointer to the allocated memory <br>
+- `realloc`: Changes the size of the previously allocated memory block, preserving the content up to the minimum of the old and new sizes.
+
 
