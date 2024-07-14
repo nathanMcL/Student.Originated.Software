@@ -247,3 +247,45 @@ printf("\t\ta = %2d %p\n", *a, a);
 > - Directly uses the memory address.
 > - Less safe as it allows direct modifications to the original variable, which can lead to unintended side effects.
 > - `Pass by Pointer`: `Increment(&a);` - The function receives the address of `a`.
+
+
+## 07/14/2024 Malloc()...
+
+### What is `malloc()`
+- `malloc()` / "Memory Allocation" is used to dynamically allocate a block of memory on the heap. 
+> - `Dynamically allocate` means the process of allocating memory during the runtime of the program, as opposed to static memory allocation, which occurs at compile time. <br>
+ 
+
+```
+void* malloc(size_n size);
+```
+- `size` is the number of bytes to allocate <br>
+> - Returns a pointer to the beginning of the block of memory allocated, if the allocation fails, it returns `NULL`. <br>
+
+```
+Int main() {
+	// Allocate memory for an array of 10 integers
+	int* array = (int*)malloc(10 * sizeof(int));
+
+	// Check if malloc succeeded. Check for NULL, which can indicate that the memory allocation failed
+	if (array == NULL) {
+		printf("Memory allocation failed\n");
+		return 1;
+	}
+
+	// Use the allocated memory
+	for (int i = 0; i < 10; i++) {
+		array[i] = i + 1;
+		printf("%d", array[i]);
+	}
+	printf("\n");
+
+	// Free the allocated memory to prevent memory leeks.
+	free(array);
+
+	return 0;
+
+}
+
+```
+
