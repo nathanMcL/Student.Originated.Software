@@ -264,6 +264,11 @@ void* malloc(size_n size);
 > - Returns a pointer to the beginning of the block of memory allocated, if the allocation fails, it returns `NULL`. <br>
 
 ```
+pointerVariableName = (dataType*)malloc(numElements * sizeof(dataType))
+```
+
+
+```
 Int main() {
 	// Allocate memory for an array of 10 integers
 	int* array = (int*)malloc(10 * sizeof(int));
