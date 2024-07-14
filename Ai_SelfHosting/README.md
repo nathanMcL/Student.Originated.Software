@@ -57,7 +57,8 @@ sudo rm /etc/apt/sources.list.d/cuda*
 - Update the package list and install Cuda
 ```sudo apt-get update && sudo apt-get install -y nvidia-docker2 && sudo systemctl restart docker```
 
-- In Power Shell enter update to latest version: <br>
+- In Power Shell:
+- Update WSL to latest version: <br>
 ```wsl --update``` <br>
 - Next, shutdown WSL <br>
 ```wsl --shutdown wsl``` <br>
