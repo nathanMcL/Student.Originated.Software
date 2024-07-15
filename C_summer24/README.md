@@ -2,7 +2,6 @@
 
 
 ## 06/25/2024 MacN C 👨🏻‍💻
-zybooks<br>
 
 ### Chpt 1 
 - Whitespace
