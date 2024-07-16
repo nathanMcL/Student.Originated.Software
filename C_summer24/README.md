@@ -297,4 +297,76 @@ Int main() {
 - `calloc`: Allocates memory for an array of elements, initializes all bytes to zero, and returns a pointer to the allocated memory <br>
 - `realloc`: Changes the size of the previously allocated memory block, preserving the content up to the minimum of the old and new sizes.
 
-## 
+## 07/16/2024 Grouping Data: using `struct`
+
+- A structure `struct` in C is used to group different types of related data.<br>
+- For example, a `struct` tagged `time`, might have hours, minutes, and seconds, which is information regarding the `struct` `time` but they can have different data types. <br>
+- `typedef` is a keyword that is used to create a new name for an existing type called `struct`.<br>  
+  
+- In the following code snippet a struct is created and variables are declared within the body `{ }`.<br>
+ 
+```
+typedef struct Time_struct {
+    int hours;
+    int minutes;
+    int seconds;
+} Time;
+```
+
+Next... <br>
+- We create a function that defines the structure named `Time` and passes in the declared  `struct` `members`: `hours`, `minutes`, and `seconds`.<br>
+
+- `Time* newTime = (Time*)malloc(sizeof(Time));` <- This line allocates memory dynamically for the `Time*` structure. <br>
+- The sizeof(Time) ensures that enough memory is allocated to hold all the `members` of the structure.<br>
+- `if (newTime == NULL)`, this checks if the previous `malloc` function was successful.<br>
+- If in the terminal, and it returns a `Memory allocation failed`, that means the memory allocation failed `NULL`, and the program exits. <br>
+
+
+```
+Time* CreateTime(int hours, int minutes, int seconds) {
+    Time* newTime = (Time*)malloc(sizeof(Time));
+    if (newTime == NULL) {
+        printf("Memory allocation failed\n");
+        exit(1);  // Exit if memory allocation fails
+    }
+```
+
+Initializing the `Members`:<br>
+
+-  `newTime->hours = hours; ...minutes; ...seconds;` Those lines `initialize` the members of the `Time` structure using the values passed as arguments to the function `CreateTime`. <br> 
+- The `->` operator is used to access the members of the structure through a pointer `*`.<br>
+Lastly... <br>
+- The `return newTime;` function returns a pointer`*` to the newly created `Time` `struct`.
+
+```
+    newTime->hours = hours;
+    newTime->minutes = minutes;
+    newTime->seconds = seconds;
+    return newTime;
+```
+
+Complete code snippet: <br>
+
+```
+typedef struct Time_struct {
+    int hours;
+    int minutes;
+    int seconds;
+} Time;
+
+Time* CreateTime(int hours, int minutes, int seconds) {
+    Time* newTime = (Time*)malloc(sizeof(Time));
+    if (newTime == NULL) {
+        printf("Memory allocation failed\n");
+        exit(1);  // Exit if memory allocation fails
+    }
+    newTime->hours = hours;
+    newTime->minutes = minutes;
+    newTime->seconds = seconds;
+    return newTime;
+}
+```
+
+
+
+
