@@ -51,7 +51,7 @@ I like this phrase, It helps me conceptulize what the compiler is doing when an 
 > test.cpp<br>
 - To run the new C file in VS code...
 > cd C_Summer2024/<br>
-> gcc -o test test.cpp<br>
+> gcc -o test test.c<br>
 > ./test<br>
 
 ## 06/30/2024 ifs & else
@@ -297,4 +297,4 @@ Int main() {
 - `calloc`: Allocates memory for an array of elements, initializes all bytes to zero, and returns a pointer to the allocated memory <br>
 - `realloc`: Changes the size of the previously allocated memory block, preserving the content up to the minimum of the old and new sizes.
 
-
+## 
