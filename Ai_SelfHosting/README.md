@@ -117,7 +117,10 @@ GPT_CONFIG_MEDIUM = {
 
 ```
  
-- attempt to run the program... ... but there might be errors 😭... lol... 🥹
+- attempt to run the program... ... but there might be errors 😭... lol... 🥹 <br>
+
+## 07/16/2024 ... There were errors...
+
 
 
 
