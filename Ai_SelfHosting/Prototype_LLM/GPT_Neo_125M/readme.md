@@ -73,4 +73,28 @@ def generate_and_print_sample(model, tokenizer, device, start_context):
 def train_model_simple(model, train_loader, val_loader, optimizer, device, num_epochs,
                        eval_freq, eval_iter, start_context, tokenizer, logger, resource,
                        accumulation_steps=4, system_logger=None, early_stopping=None):
-```<br>
+```
+<br>
+
+
+
+## Issues...
+
+- 07/16/2024 Froze at Ep4
+```
+Ep 4 (Step 001055): Train loss 2.897, Val loss 5.351
+EarlyStopping counter: 73 out of 100
+Validation loss: 5.351215
+```
+
+
+
+
+
+## TODO:
+- Always Seek Improvements
+
+
+### Resources
+
+- https://huggingface.co/EleutherAI/gpt-neo-125m 
