@@ -1,5 +1,14 @@
 # 07/16/2024 GPT-Neo 125M
 
+- Model Overview
+The GPT-Neo 125M is a transformer-based model developed by EleutherAI, emulating the architecture of GPT-3. The term GPT-Neo refers to the family of models, and 125M signifies that this specific pre-trained model comprises 125 million parameters.<br>
+
+- Training Data
+The GPT-Neo 125M model was trained using the Pile, an extensive and meticulously curated dataset assembled by EleutherAI, specifically for training such models.
+
+- Training Process
+The GPT-Neo 125M underwent training on the Pile dataset, processing 300 billion tokens over 572,300 steps. The training was conducted as a masked autoregressive language model, utilizing cross-entropy loss to optimize performance.
+
 In `previous_chapters.py`
 
 ```
