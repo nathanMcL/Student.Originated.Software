@@ -367,6 +367,28 @@ Time* CreateTime(int hours, int minutes, int seconds) {
 }
 ```
 
+## 07/17/2024 stdout, stdin file pointers...
 
+- `stdout` is a predefined FILE* that is pre-associated with a system's `standard output` or `stdout`. <br>
+>  The predefined `FILE*` is a pointer to a file structure that is automatically setup when the program starts.<br>
 
+- `fprintf` function is used to write formatted output to a specified file stream, like the terminal.<br>
 
+```
+#include <stdio.h>
+
+int main() {
+    // Using fprintf to write a string to stdout
+    fprintf(stdout, "Catastic!\n");
+
+    // Using fprintf to write an integer to stdout
+    fprintf(stdout, "%d\n", 7);
+
+    return 0;
+}
+```
+- The Output...
+```
+Catastic!
+7
+```
