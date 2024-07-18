@@ -392,3 +392,65 @@ int main() {
 Catastic!
 7
 ```
+## 07/18/2024 `stdin` file pointer...
+
+- `stdin` is a predefined file stream in C that stands for "Standard input".
+> `stdin` is used to `receive input` data from the standard input device,<br>
+> This could be the keyboard of a computer.<br>
+> By default, when a C program reads input, it reads from the `stdin`.<br>
+
+- `scanf` = Reads the formatted input from `stdin`.
+- `fgets` = Reads a string from `stdin`.
+- `getchar`= Reads a single character from `stdin`
+
+### `stdin.c`...
+
+```
+{
+    int number;
+
+    // Prompt the user to enter a number
+    printf("Enter a number: ");
+
+    // Read the number from stdin
+    scanf("%d", &number);
+
+    // Print the  entered number
+    printf("You entered: %d\n", number);
+
+    return 0;
+}
+```
+- Output: <br>
+```
+Enter a number: 7
+You entered: 7
+```
+
+### `stdin` and `stdout`, `stdINOUT.c`
+
+- The following code snippet shows how you can use both the `stdin`, and `stdout`.
+```
+{
+    char input[100];
+    
+    // Prompt the user
+    printf("Enter a string: ");
+    
+    // Read a string from stdin
+    fgets(input, sizeof(input), stdin);
+    
+    // Print the entered string to stdout
+    printf("You entered: %s", input);
+    
+    return 0;
+}
+``` 
+- Output: <br>
+```
+Enter a string: Cat are awesome!
+You entered: Cat are awesome!
+```
+ 
+
+
