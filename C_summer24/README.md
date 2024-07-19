@@ -449,9 +449,50 @@ You entered: 7
 ``` 
 - Output: <br>
 ```
-Enter a string: Cat are awesome!
-You entered: Cat are awesome!
+Enter a string: Cats are awesome!
+You entered: Cats are awesome!
 ```
- 
 
+## 07/19/2024 `Recursion`...
 
+- What is `Recursion`?
+> Recursion is a technique in programming where you have a function call itself directly or indirectly to solve a problem.<br>
+> Recursion allows for a complex problem, that can be divided into smaller, or similar sub-problems.<br>
+
+- How is `Recursion` used in creating algorithms?
+`Recursion` is a method in designing algorithms that can be used to solve problems with the following approaches...
+> Divide-and-Conquer: Problems that can be broken down into smaller sub-problems of the same type. <br>
+> Dynamic Programming: Problems that can be solved by solving overlapping sub-problems and storing their results.<br>
+> Backtracking: Problems that involve exploring multiple possible solutions and discarding those that do not meet the criteria.<br>
+> Fibonacci sequence, where each number is the sum of the two preceding numbers.<br>
+> F(n)=F(n−1)+F(n−2)
+> with base cases:
+> 𝐹(0) = 0
+> 𝐹(1) = 1
+
+- classic example of recursion is calculating the factorial of a number. The factorial of a positive integer 
+𝑛 n is the product of all positive integers less than or equal to 𝑛. The recursive definition of factorial is:
+
+> 𝑛! = 𝑛×(𝑛 − 1)!
+> with the base case being:
+> 0! = 1
+
+```
+// Recursive function to calculate the factorial of a number
+int factorial(int n) {
+    if (n == 0) {
+        return 1; //Base case
+    } else {
+        return n * factorial(n - 1);
+    }
+}
+```
+### Recursion benefits and drawbacks
+- Benefits of Recursion
+  > Simplicity: Recursive solutions can be simpler and more intuitive. <br>
+  > Modularity: Recursive functions can be broken down into simpler sub-problems.<br>
+  > Recursive Problems: Tree traversals, graph algorithms, and divided-and-conquer algorithms are naturally recursive.<br>
+
+- Drawbacks of Recursion
+> Performance: Recursive solutions can be less efficient due to repeated calculations and function call overhead.<br>
+> Stack Overflow: Each recursive call adds a new layer to the call stack, which can lead to stack overflow in the recursion depthis too great.<br>
