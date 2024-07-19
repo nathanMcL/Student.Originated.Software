@@ -430,6 +430,7 @@ You entered: 7
 ### `stdin` and `stdout`, `stdINOUT.c`
 
 - The following code snippet shows how you can use both the `stdin`, and `stdout`.
+- use `while (getchar() != '\n');` to clear the `Input Buffer` to remove any leftover newline characters from the previous inout.<br> 
 ```
 {
     char input[100];
