@@ -455,12 +455,12 @@ You entered: Cats are awesome!
 
 ## 07/19/2024 `Recursion`...
 
-- What is `Recursion`?
+- What is `Recursion`?<br>
 > Recursion is a technique in programming where you have a function call itself directly or indirectly to solve a problem.<br>
 > Recursion allows for a complex problem, that can be divided into smaller, or similar sub-problems.<br>
 
-- How is `Recursion` used in creating algorithms?
-`Recursion` is a method in designing algorithms that can be used to solve problems with the following approaches...
+- How is `Recursion` used in creating algorithms? <br>
+`Recursion` is a method in designing algorithms that can be used to solve problems with the following approaches...<br>
 > Divide-and-Conquer: Problems that can be broken down into smaller sub-problems of the same type. <br>
 > Dynamic Programming: Problems that can be solved by solving overlapping sub-problems and storing their results.<br>
 > Backtracking: Problems that involve exploring multiple possible solutions and discarding those that do not meet the criteria.<br>
