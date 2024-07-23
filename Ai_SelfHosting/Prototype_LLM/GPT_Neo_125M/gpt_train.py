@@ -1,20 +1,18 @@
-import matplotlib.pyplot as plt 
-import tiktoken 
-import torch 
-import torch.nn as nn 
-import pdfplumber 
+import matplotlib.pyplot as plt
+import torch
+import torch.nn as nn
+import pdfplumber
 import os
 import logging  # Logging
 import multiprocessing as mp  # Parallel Data Loading
 from datetime import datetime  # Import datetime for timestamping
 from torch.optim.lr_scheduler import ReduceLROnPlateau
-from torch.optim import lr_scheduler  # Import the lr_scheduler module from torch.optim
 
 from transformers import GPT2Tokenizer, GPTNeoForCausalLM
 from previous_chapters import create_dataloader_v1
 from GPTLogging import GPTLogging
 from GPTSystemLogging import GPTSystemLogger
-from EarlyStopping import EarlyStopping 
+from EarlyStopping import EarlyStopping
 
 def text_to_token_ids(text, tokenizer):
     encoded = tokenizer.encode(text, return_tensors='pt')
@@ -31,20 +29,24 @@ def calc_loss_loader(data_loader, model, device, num_batches=None):
         num_batches = len(data_loader)
     else:
         num_batches = min(num_batches, len(data_loader))
-    for i, (input_batch, target_batch) in enumerate(data_loader):
+    for i, batch in enumerate(data_loader):
         if i < num_batches:
-            loss = calc_loss_batch(input_batch, target_batch, model, device)
+            input_batch = batch['input_ids'].to(device)
+            attention_mask = batch['attention_mask'].to(device)
+            target_batch = input_batch.clone()
+            loss = calc_loss_batch(input_batch, target_batch, model, attention_mask, device)
             total_loss += loss.item()
         else:
             break
     return total_loss / num_batches
 
-def calc_loss_batch(input_batch, target_batch, model, device):
+def calc_loss_batch(input_batch, target_batch, model, attention_mask, device):
     input_batch = input_batch.to(device)
     target_batch = target_batch.to(device)
+    attention_mask = attention_mask.to(device)
 
     # Forward pass
-    output = model(input_batch, labels=target_batch)
+    output = model(input_batch, labels=target_batch, attention_mask=attention_mask)
     loss = output.loss
 
     return loss
@@ -61,7 +63,7 @@ def generate_and_print_sample(model, tokenizer, device, start_context):
     model.eval()
     encoded = tokenizer.encode(start_context, return_tensors='pt').to(device)
     with torch.no_grad():
-        output = model.generate(encoded, max_length=50)
+        output = model.generate(encoded, max_length=50, pad_token_id=tokenizer.pad_token_id)
         decoded_text = tokenizer.decode(output[0], skip_special_tokens=True)
         print(decoded_text.replace("\n", " "))  # Compact print format
     model.train()
@@ -69,12 +71,13 @@ def generate_and_print_sample(model, tokenizer, device, start_context):
 
 def train_model_simple(model, train_loader, val_loader, optimizer, device, num_epochs,
                        eval_freq, eval_iter, start_context, tokenizer, logger, resource,
-                       accumulation_steps=4, system_logger=None, early_stopping=None):
+                       accumulation_steps=4, system_logger=None, early_stopping=None,
+                       min_epochs=5):  # Add min_epochs parameter. Original min_epochs: `5`.
     train_losses, val_losses, track_tokens_seen = [], [], []
     tokens_seen = 0
     global_step = -1
 
-    scheduler = ReduceLROnPlateau(optimizer, mode='min', factor=0.1, patience=10)
+    scheduler = ReduceLROnPlateau(optimizer, mode='min', factor=0.2, patience=5) # Original factor: 0.1, Original patience: 3
 
     for epoch in range(num_epochs):
         logger.start_epoch()  # Start timer for the epoch
@@ -86,8 +89,11 @@ def train_model_simple(model, train_loader, val_loader, optimizer, device, num_e
         epoch_train_loss = []
         optimizer.zero_grad()  # Reset gradients
 
-        for i, (input_batch, target_batch) in enumerate(train_loader):
-            loss = calc_loss_batch(input_batch, target_batch, model, device)
+        for i, batch in enumerate(train_loader):
+            input_batch = batch['input_ids'].to(device)
+            attention_mask = batch['attention_mask'].to(device)
+            target_batch = input_batch.clone()
+            loss = calc_loss_batch(input_batch, target_batch, model, attention_mask, device)
             loss.backward()  # Accumulate gradients
 
             if (i + 1) % accumulation_steps == 0:
@@ -108,11 +114,11 @@ def train_model_simple(model, train_loader, val_loader, optimizer, device, num_e
                 print(f"Ep {epoch+1} (Step {global_step:06d}): "
                       f"Train loss {train_loss:.3f}, Val loss {val_loss:.3f}")
 
-                if early_stopping:
+                if early_stopping and epoch >= min_epochs: # Check for early stopping before early stopping
                     early_stopping(val_loss, model)
                     if early_stopping.early_stop:
                         print("Early stopping")
-                        break 
+                        break
 
         avg_train_loss = sum(epoch_train_loss) / len(epoch_train_loss)
         val_loss = sum(val_losses) / len(val_losses) if val_losses else float('nan')
@@ -127,7 +133,7 @@ def train_model_simple(model, train_loader, val_loader, optimizer, device, num_e
             break
 
     return train_losses, val_losses, track_tokens_seen, model
-    
+
 def plot_losses(epochs_seen, tokens_seen, train_losses, val_losses):
     fig, ax1 = plt.subplots()
 
@@ -200,6 +206,7 @@ def main(gpt_config, settings):
 
     try:
         tokenizer = GPT2Tokenizer.from_pretrained("EleutherAI/gpt-neo-125M")
+        tokenizer.pad_token = tokenizer.eos_token  # Ensure pad token is set
         model = GPTNeoForCausalLM.from_pretrained("EleutherAI/gpt-neo-125M")
         model.to(device)
         optimizer = torch.optim.AdamW(
@@ -211,34 +218,35 @@ def main(gpt_config, settings):
         train_ratio = 0.90
         split_idx = int(train_ratio * len(text_data))
 
+        max_length = gpt_config["context_length"]
         train_loader = create_dataloader_v1(
             text_data[:split_idx],
             batch_size=settings["batch_size"],
-            max_length=gpt_config["context_length"],
-            stride=gpt_config["context_length"],
+            max_length=max_length,
+            stride=max_length//2,
             drop_last=True,
             shuffle=True,
-            num_workers=4
+            num_workers=6 # Original value was: 4
         )
 
         val_loader = create_dataloader_v1(
             text_data[split_idx:],
             batch_size=settings["batch_size"],
-            max_length=gpt_config["context_length"],
-            stride=gpt_config["context_length"],
+            max_length=max_length,
+            stride=max_length//2,
             drop_last=False,
             shuffle=False,
-            num_workers=4
+            num_workers=6 # Original value was: 4
         )
 
         logger = GPTLogging("training_log.csv", "chat_log.csv")
         logger.log_start_time()
 
-        early_stopping = EarlyStopping(patience=100, verbose=True)
+        early_stopping = EarlyStopping(patience=200, verbose=True)
 
         train_losses, val_losses, tokens_seen, model = train_model_simple(
             model, train_loader, val_loader, optimizer, device,
-            num_epochs=settings["num_epochs"], eval_freq=5, eval_iter=1,
+            num_epochs=settings["num_epochs"], eval_freq=3, eval_iter=1, # Original `eval_freq`: `5`
             start_context="Discuss the importance of hydration and electrolyte balance in military nutrition.", tokenizer=tokenizer,
             logger=logger, resource=resource_name, accumulation_steps=4, system_logger=system_logger,
             early_stopping=early_stopping
@@ -256,6 +264,7 @@ def main(gpt_config, settings):
         raise e
 
     return train_losses, val_losses, tokens_seen, model
+
 
 if __name__ == "__main__":
 

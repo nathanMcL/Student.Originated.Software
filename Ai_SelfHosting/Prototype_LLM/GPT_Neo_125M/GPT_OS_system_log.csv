@@ -1,3 +1,31 @@
 Event,Name,Date & Time,Available RAM (GB),Available Memory (%),CPU Usage (%),Process Memory (MB),Process CPU Usage (%),GPU Name,GPU Memory (MB),Temperature (C / F)
 Before Training,Beez,2024-07-16 17:38:25,29.94,4.2,0.2,N/A,N/A,N/A,N/A,N/A / N/A
 During Training (Epoch 0),Beez,2024-07-16 17:39:53,29.38,6.0,0.1,N/A,N/A,N/A,N/A,N/A / N/A
+Before Training,Beez,2024-07-21 12:41:42,29.98,4.1,0.1,N/A,N/A,N/A,N/A,N/A / N/A
+During Training (Epoch 0),Beez,2024-07-21 12:42:23,29.41,5.9,0.3,N/A,N/A,N/A,N/A,N/A / N/A
+Before Training,Beez,2024-07-21 12:56:42,29.96,4.2,0.2,N/A,N/A,N/A,N/A,N/A / N/A
+During Training (Epoch 0),Beez,2024-07-21 12:57:24,29.38,6.0,0.1,N/A,N/A,N/A,N/A,N/A / N/A
+Before Training,Beez,2024-07-21 23:08:17,29.94,4.2,0.1,N/A,N/A,N/A,N/A,N/A / N/A
+During Training (Epoch 0),Beez,2024-07-21 23:09:00,29.36,6.1,0.1,N/A,N/A,N/A,N/A,N/A / N/A
+Before Training,Beez,2024-07-21 23:19:24,29.95,4.2,0.1,N/A,N/A,N/A,N/A,N/A / N/A
+During Training (Epoch 0),Beez,2024-07-21 23:20:06,29.37,6.0,0.0,N/A,N/A,N/A,N/A,N/A / N/A
+After Training,Beez,2024-07-21 23:48:31,29.18,6.6,0.2,N/A,N/A,N/A,N/A,N/A / N/A
+
+Before Training,Beez,2024-07-22 08:55:46,29.95,4.2,0.0,N/A,N/A,N/A,N/A,N/A / N/A
+During Training (Epoch 0),Beez,2024-07-22 08:56:20,29.34,6.1,0.8,N/A,N/A,N/A,N/A,N/A / N/A
+Before Training,Beez,2024-07-22 09:38:38,29.95,4.2,0.0,N/A,N/A,N/A,N/A,N/A / N/A
+During Training (Epoch 0),Beez,2024-07-22 09:39:11,29.34,6.1,0.7,N/A,N/A,N/A,N/A,N/A / N/A
+Before Training,Beez,2024-07-22 09:45:52,29.95,4.2,0.0,N/A,N/A,N/A,N/A,N/A / N/A
+During Training (Epoch 0),Beez,2024-07-22 09:46:31,29.36,6.1,0.0,N/A,N/A,N/A,N/A,N/A / N/A
+After Training,Beez,2024-07-22 10:06:45,29.17,6.7,0.0,N/A,N/A,N/A,N/A,N/A / N/A
+
+Before Training,Beez,2024-07-22 11:04:08,29.96,4.2,0.0,N/A,N/A,N/A,N/A,N/A / N/A
+During Training (Epoch 0),Beez,2024-07-22 11:04:41,29.35,6.1,0.0,N/A,N/A,N/A,N/A,N/A / N/A
+During Training (Epoch 5),Beez,2024-07-22 11:39:28,29.15,6.7,0.0,N/A,N/A,N/A,N/A,N/A / N/A
+After Training,Beez,2024-07-22 11:43:00,29.13,6.8,0.0,N/A,N/A,N/A,N/A,N/A / N/A
+
+Before Training,Beez,2024-07-22 11:51:56,29.96,4.2,0.0,N/A,N/A,N/A,N/A,N/A / N/A
+During Training (Epoch 0),Beez,2024-07-22 11:52:30,29.33,6.2,0.0,N/A,N/A,N/A,N/A,N/A / N/A
+During Training (Epoch 5),Beez,2024-07-22 12:30:55,29.16,6.7,0.0,N/A,N/A,N/A,N/A,N/A / N/A
+Before Training,Beez,2024-07-22 22:37:21,29.97,4.1,0.1,N/A,N/A,N/A,N/A,N/A / N/A
+During Training (Epoch 0),Beez,2024-07-22 22:37:55,29.29,6.3,0.5,N/A,N/A,N/A,N/A,N/A / N/A

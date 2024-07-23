@@ -1,14 +1,5 @@
 # 07/16/2024 GPT-Neo 125M
 
-- Model Overview
-The GPT-Neo 125M is a transformer-based model developed by EleutherAI, emulating the architecture of GPT-3. The term GPT-Neo refers to the family of models, and 125M signifies that this specific pre-trained model comprises 125 million parameters.<br>
-
-- Training Data
-The GPT-Neo 125M model was trained using the Pile, an extensive and meticulously curated dataset assembled by EleutherAI, specifically for training such models.
-
-- Training Process
-The GPT-Neo 125M underwent training on the Pile dataset, processing 300 billion tokens over 572,300 steps. The training was conducted as a masked autoregressive language model, utilizing cross-entropy loss to optimize performance.
-
 In `previous_chapters.py`
 
 ```
@@ -73,28 +64,4 @@ def generate_and_print_sample(model, tokenizer, device, start_context):
 def train_model_simple(model, train_loader, val_loader, optimizer, device, num_epochs,
                        eval_freq, eval_iter, start_context, tokenizer, logger, resource,
                        accumulation_steps=4, system_logger=None, early_stopping=None):
-```
-<br>
-
-
-
-## Issues...
-
-- 07/16/2024 Froze at Ep4
-```
-Ep 4 (Step 001055): Train loss 2.897, Val loss 5.351
-EarlyStopping counter: 73 out of 100
-Validation loss: 5.351215
-```
-
-
-
-
-
-## TODO:
-- Always Seek Improvements
-
-
-### Resources
-
-- https://huggingface.co/EleutherAI/gpt-neo-125m 
+```<br>

@@ -1,2 +1,72 @@
 2024-07-16 17:38:26,495 - INFO - Using device: cuda
 2024-07-16 17:38:57,649 - INFO - Data loaded successfully
+2024-07-21 12:41:43,298 - INFO - Using device: cuda
+2024-07-21 12:42:09,584 - INFO - Data loaded successfully
+2024-07-21 12:56:42,731 - INFO - Using device: cuda
+2024-07-21 12:57:09,068 - INFO - Data loaded successfully
+2024-07-21 13:05:36,443 - ERROR - Error during model training: Caught RuntimeError in DataLoader worker process 1.
+Original Traceback (most recent call last):
+  File "/home/hunchen/.local/lib/python3.10/site-packages/torch/utils/data/_utils/worker.py", line 308, in _worker_loop
+    data = fetcher.fetch(index)  # type: ignore[possibly-undefined]
+  File "/home/hunchen/.local/lib/python3.10/site-packages/torch/utils/data/_utils/fetch.py", line 54, in fetch
+    return self.collate_fn(data)
+  File "/home/hunchen/.local/lib/python3.10/site-packages/torch/utils/data/_utils/collate.py", line 316, in default_collate
+    return collate(batch, collate_fn_map=default_collate_fn_map)
+  File "/home/hunchen/.local/lib/python3.10/site-packages/torch/utils/data/_utils/collate.py", line 173, in collate
+    return [collate(samples, collate_fn_map=collate_fn_map) for samples in transposed]  # Backwards compatibility.
+  File "/home/hunchen/.local/lib/python3.10/site-packages/torch/utils/data/_utils/collate.py", line 173, in <listcomp>
+    return [collate(samples, collate_fn_map=collate_fn_map) for samples in transposed]  # Backwards compatibility.
+  File "/home/hunchen/.local/lib/python3.10/site-packages/torch/utils/data/_utils/collate.py", line 141, in collate
+    return collate_fn_map[elem_type](batch, collate_fn_map=collate_fn_map)
+  File "/home/hunchen/.local/lib/python3.10/site-packages/torch/utils/data/_utils/collate.py", line 212, in collate_tensor_fn
+    out = elem.new(storage).resize_(len(batch), *list(elem.size()))
+RuntimeError: Trying to resize storage that is not resizable
+
+2024-07-21 23:08:17,656 - INFO - Using device: cuda
+2024-07-21 23:08:43,827 - INFO - Data loaded successfully
+2024-07-21 23:09:00,276 - ERROR - Error during model training: Caught TypeError in DataLoader worker process 0.
+Original Traceback (most recent call last):
+  File "/home/hunchen/.local/lib/python3.10/site-packages/torch/utils/data/_utils/worker.py", line 308, in _worker_loop
+    data = fetcher.fetch(index)  # type: ignore[possibly-undefined]
+  File "/home/hunchen/.local/lib/python3.10/site-packages/torch/utils/data/_utils/fetch.py", line 54, in fetch
+    return self.collate_fn(data)
+  File "/home/hunchen/.local/lib/python3.10/site-packages/transformers/data/data_collator.py", line 45, in __call__
+    return self.torch_call(features)
+  File "/home/hunchen/.local/lib/python3.10/site-packages/transformers/data/data_collator.py", line 801, in torch_call
+    "input_ids": _torch_collate_batch(examples, self.tokenizer, pad_to_multiple_of=self.pad_to_multiple_of)
+  File "/home/hunchen/.local/lib/python3.10/site-packages/transformers/data/data_collator.py", line 434, in _torch_collate_batch
+    examples = [torch.tensor(e, dtype=torch.long) for e in examples]
+  File "/home/hunchen/.local/lib/python3.10/site-packages/transformers/data/data_collator.py", line 434, in <listcomp>
+    examples = [torch.tensor(e, dtype=torch.long) for e in examples]
+TypeError: only integer tensors of a single element can be converted to an index
+
+2024-07-21 23:19:25,176 - INFO - Using device: cuda
+2024-07-21 23:19:51,444 - INFO - Data loaded successfully
+2024-07-21 23:49:01,053 - INFO - Model saved as model_20240721_234831.pth
+2024-07-22 08:55:47,173 - INFO - Using device: cuda
+2024-07-22 08:56:12,893 - INFO - Data loaded successfully
+2024-07-22 08:56:20,378 - ERROR - Error during model training: 'attention_mask'
+2024-07-22 09:38:38,485 - INFO - Using device: cuda
+2024-07-22 09:39:04,758 - INFO - Data loaded successfully
+2024-07-22 09:39:11,936 - ERROR - Error during model training: Caught TypeError in DataLoader worker process 0.
+Original Traceback (most recent call last):
+  File "/home/hunchen/.local/lib/python3.10/site-packages/torch/utils/data/_utils/worker.py", line 308, in _worker_loop
+    data = fetcher.fetch(index)  # type: ignore[possibly-undefined]
+  File "/home/hunchen/.local/lib/python3.10/site-packages/torch/utils/data/_utils/fetch.py", line 54, in fetch
+    return self.collate_fn(data)
+  File "/mnt/d/myPython/SpringStudentOriginatedSoftware/AI_SelfHosting/Prototype_LLM/GPT_NEO_125M/previous_chapters.py", line 69, in collate_fn
+    inputs = torch.nn.utils.rnn.pad_sequence(batch, batch_first=True, padding_value=tokenizer.pad_token_id)
+  File "/home/hunchen/.local/lib/python3.10/site-packages/torch/nn/utils/rnn.py", line 399, in pad_sequence
+    return torch._C._nn.pad_sequence(sequences, batch_first, padding_value)
+TypeError: pad_sequence(): argument 'padding_value' (position 3) must be float, not NoneType
+
+2024-07-22 09:45:52,576 - INFO - Using device: cuda
+2024-07-22 09:46:18,494 - INFO - Data loaded successfully
+2024-07-22 10:07:13,756 - INFO - Model saved as model_20240722_100645.pth
+2024-07-22 11:04:09,171 - INFO - Using device: cuda
+2024-07-22 11:04:35,119 - INFO - Data loaded successfully
+2024-07-22 11:43:28,840 - INFO - Model saved as model_20240722_114300.pth
+2024-07-22 11:51:57,266 - INFO - Using device: cuda
+2024-07-22 11:52:23,589 - INFO - Data loaded successfully
+2024-07-22 22:37:21,888 - INFO - Using device: cpu
+2024-07-22 22:37:48,302 - INFO - Data loaded successfully
