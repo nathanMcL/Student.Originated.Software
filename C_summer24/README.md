@@ -496,3 +496,114 @@ int factorial(int n) {
 - Drawbacks of Recursion
 > Performance: Recursive solutions can be less efficient due to repeated calculations and function call overhead.<br>
 > Stack Overflow: Each recursive call adds a new layer to the call stack, which can lead to stack overflow in the recursion depthis too great.<br>
+
+
+## 07/26/2024 the Big O notation...
+
+
+### Runtime complexities for various pseudocode examples.
+
+```
+Notation...  Name... Examples in Pseudocode...
+
+O(1)	    Constant     FindMin(x, y) {
+                             if (x < y) {
+      			        return x
+   			     } else {
+                                  return y
+                             }
+                          }      
+
+```
+
+
+```
+Notation...  Name...     Examples in Pseudocode...
+
+O(log N)   Logarithmic  BinarySearch(numbers, N, key) {
+                            mid = 0;
+                            low = 0;
+                            high = 0;
+   
+                            high = N - 1;
+   
+                            while (high >= low) {
+                                mid = (high + low) / 2
+                                if (numbers[mid] < key) {
+                                low = mid + 1
+                                }
+                                else if (numbers[mid] > key) {
+                                   high = mid - 1
+                                } else {
+                                     return mid
+                                }
+                             }
+   
+                             return -1   // not found
+                          }  
+
+
+```
+
+
+```
+Notation...  Name...     Examples in Pseudocode...
+O(N)	     Linear      LinearSearch(numbers, N, key) {
+                           for (i = 0; i < N; ++i) {
+                               if (numbers[i] == key) {
+                                  return i
+                               }
+                            }
+   
+                             return -1 // not found
+                          } 
+
+```
+
+```
+Notation...  Name...     Examples in Pseudocode...
+O(N log N)  Log-linear   MergeSort(numbers, i, k) {
+                            j = 0
+                            if (i < k) {
+                               j = (i + k) / 2 // Find midpoint 
+      
+                               MergeSort(numbers, i, j)     // Sort left part
+                               MergeSort(numbers, j + 1, k) // Sort right part
+                               Merge(numbers, i, j, k)      // Merge parts
+                            }
+                         }
+
+```
+
+
+```
+Notation...  Name...     Examples in Pseudocode...
+O(N^2)	   Quadratic     SelectionSort(numbers, N) { 
+                            for (i = 0; i < N; ++i) {
+                               indexSmallest = i
+                               for (j = i + 1; j < N; ++j) {
+                                  if (numbers[j] < numbers[indexSmallest]) {
+                                     indexSmallest = j
+                                  }
+                               }
+      
+                               temp = numbers[i]
+                               numbers[i] = numbers[indexSmallest]
+                               numbers[indexSmallest] = temp
+                             }
+                          }   
+
+```
+
+
+```
+Notation...  Name...     Examples in Pseudocode...
+O(c^N)	   Exponential   Fibonacci(N) {
+                           if ((1 == N) || (2 == N)) {
+                             return 1
+                           }
+                           return Fibonacci(N-1) + Fibonacci(N-2)
+                         }
+
+```
+
