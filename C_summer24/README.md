@@ -504,6 +504,8 @@ int factorial(int n) {
 ### Runtime complexities for various pseudocode examples.
 
 - The Big O notation ( O(1) ), also known as constant time complexity, describes an algorithm or function whose runtime is independent of the size of the input. This means that no matter how large the input grows, the execution time remains the same.<br>
+- The function FindMin(x, y)...<br>
+The function compares two values, ( x ) and ( y ), and returns the smaller of the two. The key point here is that the function performs a fixed number of operations (one comparison and one return) regardless of the values of ( x ) and ( y ) or how they might change. This is why the function operates in constant time, or ( O(1) ).
 
 ```
 Notation...  Name... Examples in Pseudocode...
