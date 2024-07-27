@@ -520,7 +520,20 @@ O(1)	    Constant     FindMin(x, y) {
 
 ```
 
+- Binary Search...<br>
 
+- The Big O notation ( O(\log N) ), known as logarithmic time complexity, describes an algorithm whose runtime grows logarithmically with the size of the input ( N ).<br>
+-  This means that each step of the algorithm reduces the problem size by a consistent factor (normally half), making it significantly more efficient for large inputs compared to linear time algorithms.<br>
+-  In the BinarySearch function, the algorithm searches for a specific key within a sorted array numbers of size N. <br>
+### How Binary Search Works:
+- The function starts by setting three pointers: `low`, `high`, and `mid`. `low` is initialized to the beginning of the array, `high` to the end, and `mid` is calculated as the middle index.
+- Iterative Process:The main loop continues as long as `high` is greater than or equal to `low`.
+- In each iteration:The middle element of the current subarray is compared to the key. If the middle element matches the key, the function returns the `mid` index, indicating the position of the key in the array.
+- If the key is greater than the middle element, it means the key must be in the upper half of the array.
+- `low` is updated to `mid` + 1. If the key is less than the middle element, it must be in the lower half, so `high` is updated to `mid` - 1.
+- Termination: The process repeats, each time halving the search space. If the key is found, its index is returned. If the loop ends without finding the key, the function returns -1, indicating that the key is not present in the array.
+- Efficiency and Usage: Logarithmic Time: The efficiency of the binary search algorithm comes from the fact that each iteration cuts the search space in half. Therefore, the number of iterations required is proportional to the logarithm (base 2) of the input size ( N ), Sooo... ( O(\log N) ).
+- Practical Implications: This makes binary search efficient for large datasets, especially when compared to linear search algorithms (which operate in ( O(N) ) time). However, binary search requires that the input array is sorted beforehand.
 ```
 Notation...  Name...     Examples in Pseudocode...
 
