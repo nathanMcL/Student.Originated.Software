@@ -561,7 +561,17 @@ O(log N)   Logarithmic  BinarySearch(numbers, N, key) {
 
 
 ```
+### Linear Time Complexity...
 
+- linear time complexity, describes an algorithm whose runtime grows linearly with the size of the input ( N ). <br>
+- This means that the time required to complete the task increases proportionally with the number of elements in the input.
+- In the example of the LinearSearch function, the algorithm searches for a specific key within an array numbers of size N.
+- The function starts by iterating over the array numbers using a loop that runs from 0 to N-1.
+- Iteration Process: For each element numbers[i] in the array, the algorithm checks if it matches the key. If numbers[i] == key, the function returns the index i, indicating the position of the key in the array.
+- Termination:If the loop completes without finding the key, the function returns -1, indicating that the key is not present in the array.
+- Linear Time: The time complexity is ( O(N) ) because in the worst case, the function might have to check each element in the array exactly once. For instance, if the key is at the last position or not present at all, the function will perform N comparisons.
+- Linear search is straightforward and requires no prior sorting of the data, making it suitable for small datasets or unsorted arrays.
+- However, it becomes inefficient as the size of the dataset grows compared to more efficient algorithms like binary search (which requires sorted data).
 
 ```
 Notation...  Name...     Examples in Pseudocode...
